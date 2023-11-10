@@ -5,8 +5,8 @@ import { RippleBadge } from "./MaterialTheme/styled";
 
 function App() {
     return (
-        <Container maxWidth="sm">
-            <Stack flexDirection={"column"}>
+        <Container>
+            {/* <Stack flexDirection={"column"}>
                 <Box sx={{ my: 4 }}>
                     <Typography variant="h4" component={"h1"} gutterBottom>
                         Create React App on TypeScript with Redux
@@ -17,7 +17,7 @@ function App() {
                         <Button variant="contained">Contained</Button>
                     </RippleBadge>
                 </Box>
-            </Stack>
+            </Stack> */}
         </Container>
     );
 }
