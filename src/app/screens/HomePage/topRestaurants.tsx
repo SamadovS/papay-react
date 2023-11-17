@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Container } from "@mui/material";
+import { Box, Button, Container } from "@mui/material";
 import { Stack } from "@mui/system";
 
 import Card from "@mui/joy/Card";
@@ -93,11 +93,8 @@ export function TopRestaurants() {
                                     </IconButton>
 
                                     <Typography
-                                        // level="body3"    // bu ishlamadi
+                                        level="body-sm"
                                         sx={{
-                                            fontSize: "16px", // bu ikkisi yangi qo'shildi
-                                            lineHeight: "1.5",
-
                                             fontWeight: "md",
                                             color: "neutral.300",
                                             alignItems: "center",
@@ -464,6 +461,19 @@ export function TopRestaurants() {
                                 </CardOverflow>
                             </Card>
                         </CssVarsProvider>
+                    </Stack>
+
+                    {/* Text: See All */}
+                    <Stack
+                        flexDirection={"row"}
+                        justifyContent={"flex-end"}
+                        style={{ width: "100%", marginTop: "16px" }}
+                    >
+                        <Button
+                            style={{ background: "#1976d2", color: "#FFFFFF" }}
+                        >
+                            Barchasini Ko'rish
+                        </Button>
                     </Stack>
                 </Stack>
             </Container>

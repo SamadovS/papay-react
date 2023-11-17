@@ -56,11 +56,18 @@
 }
 
 .homepage .category_title {
-    font-family: "Poppins";
+    font-family: "Roboto";
     font-style: normal;
     font-weight: 700;
     font-size: 36px;
     line-height: 42px;
     /* text-align: center; */
     color: #e3c08d;
+}
+
+.homepage .best_restaurant_frame {
+    width: 100%;
+    height: 755px;
+    display: flex;
+    background: #0b0e11;
 }
