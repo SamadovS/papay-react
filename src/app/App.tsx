@@ -18,77 +18,51 @@ import { NavbarOthers } from "./components/header/others";
 import { Footer } from "./components/footer";
 
 function App() {
-    const [path, setPath] = useState();
-    const main_path = window.location.pathname;
-    // console.log("main_path", main_path);
+  const [path, setPath] = useState();
+  const main_path = window.location.pathname;
+  // console.log("main_path", main_path);
 
-    return (
-        <Router>
-            {main_path == "/" ? (
-                <NavbarHome setPath={setPath} />
-            ) : main_path.includes("restaurant") ? (
-                <NavbarRestaurant setPath={setPath} />
-            ) : (
-                <NavbarOthers setPath={setPath} />
-            )}
+  return (
+    <Router>
+      {main_path == "/" ? (
+        <NavbarHome setPath={setPath} />
+      ) : main_path.includes("restaurant") ? (
+        <NavbarRestaurant setPath={setPath} />
+      ) : (
+        <NavbarOthers setPath={setPath} />
+      )}
 
-            {/* <nav>
-                    <ul>
-                        <li>
-                            <Link to="/restaurant">RestaurantPage</Link>
-                        </li>
-                        <li>
-                            <Link to="/community">CommunityPage</Link>
-                        </li>
-                        <li>
-                            <Link to="/orders">OrdersPage</Link>
-                        </li>
-                        <li>
-                            <Link to="/members">MembersPage</Link>
-                        </li>
-                        <li>
-                            <Link to="/help">HelpPage</Link>
-                        </li>
-                        <li>
-                            <Link to="/login">LoginPage</Link>
-                        </li>
-                        <li>
-                            <Link to="/">HomePage</Link>
-                        </li>
-                    </ul>
-                </nav> */}
+      <Switch>
+        <Route path="/restaurant">
+          <RestaurantPage />
+        </Route>
+        <Route path="/community">
+          <CommunityPage />
+        </Route>
+        <Route path="/orders">
+          <OrdersPage />
+        </Route>
+        <Route path="/members">
+          <MembersPage />
+        </Route>
+        <Route path="/help">
+          <HelpPage />
+        </Route>
+        <Route path="/login">
+          <LoginPage />
+        </Route>
+        <Route path="/">
+          <HomePage />
+        </Route>
+      </Switch>
 
-            <Switch>
-                <Route path="/restaurant">
-                    <RestaurantPage />
-                </Route>
-                <Route path="/community">
-                    <CommunityPage />
-                </Route>
-                <Route path="/orders">
-                    <OrdersPage />
-                </Route>
-                <Route path="/members">
-                    <MembersPage />
-                </Route>
-                <Route path="/help">
-                    <HelpPage />
-                </Route>
-                <Route path="/login">
-                    <LoginPage />
-                </Route>
-                <Route path="/">
-                    <HomePage />
-                </Route>
-            </Switch>
-
-            <Footer />
-        </Router>
-    );
+      <Footer />
+    </Router>
+  );
 }
 
 export default App;
 
 function Home() {
-    return <h2>Home</h2>;
+  return <h2>Home</h2>;
 }

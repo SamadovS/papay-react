@@ -10,15 +10,15 @@ import { Recommendations } from "./recommendations";
 import "../../../css/home.css";
 
 export function HomePage() {
-    return (
-        <div className="homepage">
-            <Statistics />
-            <TopRestaurants />
-            <BestRestaurants />
-            <BestDishes />
-            <Advertisements />
-            <Events />
-            <Recommendations />
-        </div>
-    );
+  return (
+    <div className="homepage">
+      <Statistics />
+      <TopRestaurants />
+      <BestRestaurants />
+      <BestDishes />
+      <Advertisements />
+      <Events />
+      <Recommendations />
+    </div>
+  );
 }
