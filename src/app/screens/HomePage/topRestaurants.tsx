@@ -1,7 +1,6 @@
 import React from "react";
 import { Box, Button, Container } from "@mui/material";
 import { Stack } from "@mui/system";
-
 import Card from "@mui/joy/Card";
 import CardCover from "@mui/joy/CardCover";
 import CardContent from "@mui/joy/CardContent";
@@ -150,7 +149,7 @@ export function TopRestaurants() {
                 <CardOverflow
                   sx={{
                     display: "flex",
-                    flexDirection: "row", // yangi qo'shildi
+                    flexDirection: "row",
                     gap: 1.5,
                     py: 1.5,
                     px: "var(--Card-padding)",
@@ -176,9 +175,8 @@ export function TopRestaurants() {
                   </IconButton>
 
                   <Typography
-                    // level="body3"    // bu ishlamadi
                     sx={{
-                      fontSize: "16px", // bu ikkisi yangi qo'shildi
+                      fontSize: "16px",
                       lineHeight: "1.5",
 
                       fontWeight: "md",
@@ -247,7 +245,7 @@ export function TopRestaurants() {
                 <CardOverflow
                   sx={{
                     display: "flex",
-                    flexDirection: "row", // yangi qo'shildi
+                    flexDirection: "row",
                     gap: 1.5,
                     py: 1.5,
                     px: "var(--Card-padding)",
@@ -273,9 +271,8 @@ export function TopRestaurants() {
                   </IconButton>
 
                   <Typography
-                    // level="body3"    // bu ishlamadi
                     sx={{
-                      fontSize: "16px", // bu ikkisi yangi qo'shildi
+                      fontSize: "16px",
                       lineHeight: "1.5",
 
                       fontWeight: "md",
@@ -344,7 +341,7 @@ export function TopRestaurants() {
                 <CardOverflow
                   sx={{
                     display: "flex",
-                    flexDirection: "row", // yangi qo'shildi
+                    flexDirection: "row",
                     gap: 1.5,
                     py: 1.5,
                     px: "var(--Card-padding)",
@@ -370,9 +367,8 @@ export function TopRestaurants() {
                   </IconButton>
 
                   <Typography
-                    // level="body3"    // bu ishlamadi
                     sx={{
-                      fontSize: "16px", // bu ikkisi yangi qo'shildi
+                      fontSize: "16px",
                       lineHeight: "1.5",
 
                       fontWeight: "md",
