@@ -24,9 +24,15 @@ export default function FinishedOrders(props: any) {
                       <p className={"titleDish"}>Baliq</p>
                       <Box className={"priceBox"}>
                         <p>$7</p>
-                        <img src={"/icons/close.svg"} />
+                        <img
+                          style={{ margin: "0 10px" }}
+                          src={"/icons/close.svg"}
+                        />
                         <p>3</p>
-                        <img src={"/icons/pause.svg"} />
+                        <img
+                          style={{ margin: "0 10px" }}
+                          src={"/icons/pause.svg"}
+                        />
                         <p style={{ marginLeft: "15px" }}>$21</p>
                       </Box>
                     </Box>
@@ -34,18 +40,19 @@ export default function FinishedOrders(props: any) {
                 })}
               </Box>
 
-              <Box className={"total_price_box red_solid"}>
-                <Box className={"boxTotal"}>
-                  <p>Mahsulot narxi</p>
-                  <p>$22</p>
-                  <img src={"/icons/plus.svg"} style={{ marginLeft: "20px" }} />
-                  <p>Yetkazish xizmati</p>
-                  <p>$2</p>
-                  <img
-                    src={"/icons/pause.svg"}
-                    style={{ marginLeft: "20px" }}
-                  />
-                </Box>
+              <Box className={"total_price_box finished"}>
+                <div>
+                  <span>Maxsulot narxi = </span>
+                  <span>$ 21</span>
+                </div>
+                <div>
+                  <span>Yetkazish xizmati = </span>
+                  <span>$ 2</span>
+                </div>
+                <div>
+                  <span>Jami narx = </span>
+                  <span>$ 23</span>
+                </div>
               </Box>
             </Box>
           );

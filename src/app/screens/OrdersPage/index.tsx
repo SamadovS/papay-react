@@ -68,32 +68,40 @@ export function OrdersPage() {
               alignItems={"center"}
             >
               <div className={"order_user_img"}>
-                <img
-                  src={"/auth/default_user.svg"}
-                  className={"order_user_avatar"}
-                />
-                <div className={"order_user_ucon_box"}>
-                  src={"/auth/user_icon.svg"}
-                  className={"order_user_prof_img"}
-                </div>
+                <img src={"/auth/ddefault_user.svg"} />
               </div>
-              <span className={"order_user_name"}>Sam</span>
+              <span className={"order_user_name"}>Maria</span>
               <span className={"order_user_prof"}>Foydalanuvchi</span>
             </Box>
+            <Box className={"line"}></Box>
             <Box
               style={{ border: "1px solid #A1A1A1" }}
               width={"100%"}
+              height={"2px"}
               sx={{ mt: "40px", mb: "8px" }}
             ></Box>
             <Box className={"order_user_address"}>
               <div style={{ display: "flex" }}>
                 <LocationOnIcon />
               </div>
-              <div className={"spec_address_txt"}>Yunusabad 4, Tashkent</div>
+              <div>Yunusabad 1-4, Tashkent</div>
             </Box>
           </Box>
-          <Box className={"order_info_box"} sx={{ mt: "15px" }}>
-            <input type={"text"} />
+          <Box className={"payment_box"}>
+            <form className={"payment_form"}>
+              <input type="text" placeholder="1122 3344 5566 7788" />
+              <Box className={"form_divider"}>
+                <input type="text" placeholder="07/24" />
+                <input type="text" placeholder="CVV: 010" />
+              </Box>
+              <input type="text" placeholder="Maria" />
+            </form>
+            <Box className={"card_types"}>
+              <img className={"card"} src="/others/western_union.svg" />
+              <img className={"card"} src="/others/master_card.svg" />
+              <img className={"card"} src="/others/paypal.svg" />
+              <img className={"card"} src="/others/visa.svg" />
+            </Box>
           </Box>
         </Stack>
       </Container>

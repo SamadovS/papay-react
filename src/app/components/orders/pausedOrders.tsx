@@ -24,31 +24,41 @@ export default function PausedOrders(props: any) {
                       <img src={image_path} className={"orderDishImg"} />
                       <p className={"titleDish"}>Baliq</p>
                       <Box className={"priceBox"}>
-                        <p>$7</p>
-                        <img src={"/icons/close.svg"} />
-                        <p>3</p>
-                        <img src={"/icons/pause.svg"} />
-                        <p style={{ marginLeft: "15px" }}>$21</p>
+                        <p>$ 7 </p>
+                        <img
+                          style={{ margin: "0 10px" }}
+                          src={"/icons/close.svg"}
+                        />
+                        <p> 3 </p>
+                        <img
+                          style={{ margin: "0 10px" }}
+                          src={"/icons/pause.svg"}
+                        />
+                        <p style={{ marginLeft: "15px" }}> $ 21</p>
                       </Box>
                     </Box>
                   );
                 })}
               </Box>
 
-              <Box className={"total_price_box black_solid"}>
-                <Box className={"boxTotal"}>
-                  <p>Mahsulot narxi</p>
-                  <p>$21</p>
-                  <img src={"/icons/plus.svg"} />
-                  <p>Yetkazish xizmati</p>
-                  <p>$2</p>
-                  <img
-                    src={"/icons/pause.svg"}
-                    style={{ marginLeft: "20px" }}
-                  />
-                  <p>Jami narx</p>
-                  <p>$23</p>
-                </Box>
+              <Box className={"total_price_box paused"}>
+                <div>
+                  <span>Maxsulot narxi = </span>
+                  <span>$ 21</span>
+                </div>
+                <div>
+                  <span>Yetkazish xizmati = </span>
+                  <span>$ 2</span>
+                </div>
+                <div>
+                  <span>Jami narx = </span>
+                  <span>$ 23</span>
+                </div>
+
+                <div>
+                  <Button className="order_cancel">Bekor qilish</Button>
+                  <Button className="order_pay">To'lash</Button>
+                </div>
               </Box>
             </Box>
           );
