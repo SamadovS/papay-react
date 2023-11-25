@@ -818,29 +818,38 @@
 .chosen_dish_page .chosen_dish_slider {
   width: 48%;
   height: 581px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .chosen_dish_page .dish_swiper {
   --swiper-navigation-color: #fff;
   --swiper-pagination-color: #fff;
   width: 100%;
-  height: 1020px;
+  height: auto;
 }
 
 /* 1.1 Swiper 2: small pictures */
-.chosen_dish_page .one_dish_pics {
-  width: 100%;
-  height: auto;
+.chosen_dish_page .chosen_dish_slider .one_dish_slider {
+  width: 80%;
+  height: 107px;
   margin-top: 20px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
 }
 
-.chosen_dish_page .one_dish_pic {
-  width: 160px;
-  height: 107px;
-  padding: 10px;
+.chosen_dish_page .chosen_dish_slider .one_dish_pics {
+  width: 100%;
+  height: 100%;
+}
+
+.chosen_dish_page .chosen_dish_slider .one_dish_pic {
+  width: 105px;
+  height: 100%;
+}
+
+.chosen_dish_page .one_dish_pic img {
+  width: 150px;
+  height: 100px;
   border-radius: 15px;
   margin-right: 20px;
 }

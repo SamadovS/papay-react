@@ -14,6 +14,7 @@ import { Favorite, FavoriteBorder } from "@mui/icons-material";
 import Checkbox from "@mui/material/Checkbox";
 
 const chosen_list = Array.from(Array(3).keys());
+const dish_pics = Array.from(Array(5).keys());
 
 export function ChosenDish() {
   const label = { inputProps: { "aria-label": "Checkbox demo" } };
@@ -25,7 +26,7 @@ export function ChosenDish() {
         <Stack className="chosen_dish_slider">
           {/* 1.1 Swiper: big pictures */}
           <Swiper
-            className="dish_swiper"
+            className={"dish_swiper"}
             loop={true}
             spaceBetween={10}
             navigation={true}
@@ -46,11 +47,30 @@ export function ChosenDish() {
           </Swiper>
 
           {/* 1.2 div: small pictures */}
-          <div className={"one_dish_pics"}>
-            <img className="one_dish_pic" src="/others/fish.jpg" />
-            <img className="one_dish_pic" src="/others/fish.jpg" />
-            <img className="one_dish_pic" src="/others/fish.jpg" />
-          </div>
+          <Stack className={"one_dish_slider"}>
+            <Swiper
+              className={"one_dish_pics"}
+              slidesPerView={3}
+              centeredSlides={false}
+              spaceBetween={20}
+              navigation={{
+                nextEl: ".restaurant-next",
+                prevEl: ".restaurant-prev",
+              }}
+            >
+              {dish_pics.map((ele, index) => {
+                return (
+                  <SwiperSlide
+                    style={{ cursor: "pointer" }}
+                    key={index}
+                    className={"one_dish_pic"}
+                  >
+                    <img src={"/others/fish.jpg"} />
+                  </SwiperSlide>
+                );
+              })}
+            </Swiper>
+          </Stack>
         </Stack>
 
         {/* 2/2 Stack: Dish Info */}
