@@ -6,25 +6,17 @@ import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 
-import PausedOrders from "../../components/orders/pausedOrders";
-import ProcessOrders from "../../components/orders/processOrders";
-import FinishedOrders from "../../components/orders/finishedOrders";
+import PausedOrders from "./pausedOrders";
+import ProcessOrders from "./processOrders";
+import FinishedOrders from "./finishedOrders";
 
 export function OrdersPage() {
   /** INITIALIZATIONS **/
   const [value, setValue] = useState("1");
 
-  // let value = "1"
-  // console.log("Passed here")
-  // console.log("value:", value);
-
   /** HANDLERS **/
   const handleChange = (event: any, newValue: string) => {
-    // alert(newValue);
     setValue(newValue);
-
-    // value = newValue;
-    // console.log("value:", value);
   };
 
   return (
@@ -41,7 +33,6 @@ export function OrdersPage() {
               <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
                 <TabList
                   onChange={handleChange}
-                  // value={value}
                   aria-label="basic tabs example"
                   style={{ display: "flex", justifyContent: "space-between" }}
                 >

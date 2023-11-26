@@ -93,7 +93,7 @@ export function ChosenDish() {
                     icon={<FavoriteBorder />}
                     checkedIcon={<Favorite style={{ color: "red" }} />}
                     /*@ts-ignore*/
-                    checked={false}
+                    checked={true}
                   />
                   <span>98</span>
                 </div>
