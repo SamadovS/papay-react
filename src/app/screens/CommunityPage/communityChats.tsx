@@ -5,7 +5,6 @@ import SendIcon from "@mui/icons-material/Send";
 export function CommunityChats() {
   /** INITIALIZATIONS **/
   const [messageList, setMessageList] = React.useState([]);
-  <Box className={""}></Box>;
 
   return (
     <Stack className={"chat_frame"}>

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Box, Container, Stack } from "@mui/material";
+import { Box, Container, Stack, Tabs } from "@mui/material";
 import Pagination from "@mui/material/Pagination";
 import PaginationItem from "@mui/material/PaginationItem";
 import Tab from "@mui/material/Tab";
@@ -44,7 +44,8 @@ export function CommunityPage(props: any) {
                 {/* 2.1 article_tabs */}
                 <Box className={"article_tabs"}>
                   <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-                    <TabList
+                    <Tabs
+                      value={value}
                       onChange={handleChange}
                       aria-label="lab API tabs example"
                       style={{ borderColor: "blue" }}
@@ -53,7 +54,7 @@ export function CommunityPage(props: any) {
                       <Tab label="Mashxurlar" value={"2"} />
                       <Tab label="Oshxonaga Baho" value={"3"} />
                       <Tab label="Hikoyalar" value={"4"} />
-                    </TabList>
+                    </Tabs>
                   </Box>
                 </Box>
 
@@ -61,7 +62,7 @@ export function CommunityPage(props: any) {
                 <Box className={"article_main"}>
                   <TabPanel value={"1"}>
                     <TargetArticles
-                      targetBoArticles={[1, 2, 3]}
+                      targetBoArticles={[1, 2, 3, 4]}
                       test={"Maqolalar"}
                     />
                   </TabPanel>
@@ -72,7 +73,7 @@ export function CommunityPage(props: any) {
                     />
                   </TabPanel>
                   <TabPanel value={"3"}>
-                    <TargetArticles targetBoArticles={[1, 2, 3, 4, 5]} />
+                    <TargetArticles targetBoArticles={[1, 2, 3]} />
                   </TabPanel>
                   <TabPanel value={"4"}>
                     <TargetArticles targetBoArticles={[1, 2, 3, 4]} />
@@ -80,7 +81,10 @@ export function CommunityPage(props: any) {
                 </Box>
 
                 {/* 2.3 article_bottom: pagination */}
-                <Box className={"art_bottom"}>
+                <Box
+                  sx={{ borderTop: 1, borderColor: "divider" }}
+                  className={"art_bottom"}
+                >
                   <Pagination
                     count={3}
                     page={1}

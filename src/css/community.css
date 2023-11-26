@@ -9,53 +9,23 @@
   width: 100%;
   height: 100%;
   display: flex;
-  /* flex-direction: row; */
   background: #0b0e11;
 }
 
 .community_page .community_container {
-  /* position: relative; */
   margin-top: 50px;
   margin-bottom: 50px;
 }
 
 .community_page .community_stack {
-  /* position: relative;
-  display: flex; */
   flex-direction: row;
   justify-content: space-between;
 }
-
-/* .community_page .community_chats {
-  width: 30%;
-  height: 1150px;
-  display: flex;
-  flex-direction: column;
-  background: #e3f2fd;
-  border: 1px solid #ffffff;
-  border-radius: 34px;
-}
-
-.community_page .community_articles {
-  width: 68%;
-  height: 1150px;
-  background: #0b0e11;
-  border: 1px solid #ffffff;
-  border-radius: 34px;
-} */
 
 /* 1/2 for Community Chats */
 .community_page .community_chats {
   width: 30%;
   height: 1150px;
-  /* display: flex;
-  flex-direction: column;
-  background: #e3f2fd;
-  border: 1px solid #ffffff;
-  border-radius: 34px;
-
-  justify-content: space-between;
-  align-items: center; */
 }
 
 .community_page .center_bottom {
@@ -66,27 +36,17 @@
   flex-direction: column;
 }
 
-.community_page .community_chats .article_tabs {
-  width: 100%;
-  height: 94px;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  border-bottom: 1px solid rgba(228, 228, 228, 0.83);
-}
-
 .community_page .chat_frame {
   width: auto;
   height: 1150px;
   display: flex;
+  justify-content: space-between;
+
+  align-items: center;
   flex-direction: column;
   background: #e3f2fd;
   border: 1px solid #ffffff;
   border-radius: 34px;
-
-  justify-content: space-between;
-  align-items: center;
 }
 
 /* chat top */
@@ -96,7 +56,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  border-bottom: 1px solid rgba(228, 228, 228, 0.83);
+  border-bottom: 2px solid rgba(228, 228, 228, 0.83);
   font-family: "Poppins";
   font-style: normal;
   font-weight: 600;
@@ -106,7 +66,7 @@
 }
 
 /* middle: chat content */
-.community_page .community_chats .chat_content {
+.community_page .chat_content {
   position: relative;
   width: 100%;
   height: 100%;
@@ -117,11 +77,11 @@
   overflow: hidden;
 }
 
-.community_page .community_chats .chat_content .chat_main {
+.community_page .chat_content .chat_main {
   position: relative;
   width: 100%;
-  height: 100%;
-  padding: 17px;
+  /* height: 100%;
+  padding: 17px; */
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -213,112 +173,160 @@
   background: #0b0e11;
   border: 1px solid #ffffff;
   border-radius: 34px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 /* 2.1 article_tabs */
-.community_page .community_articles .article_tabs {
+.community_articles .article_tabs {
+  width: 100%;
+  height: 75px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 2px solid rgba(228, 228, 228, 0.83);
+}
+
+.community_page .article_wrap {
+  /* overflow-y: scroll; */
+  width: 820px;
+  height: 800px;
 }
 
 /* 2.2 article_main */
-.community_page .community_articles .article_main {
+.community_page .article_main {
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
 }
 
 /* 2.3 article_bottom: pagination */
 .community_page .art_bottom {
   display: flex;
   justify-content: center;
+  /* border: 1px solid yellow; */
   align-items: center;
+  height: 60px;
+  border-top: 2px solid rgba(228, 228, 228, 0.83);
 }
 
 /* article box */
 .community_page .article_box {
-  width: 100%;
-  height: 295px;
-  margin-top: 20px;
-  display: flex;
-  flex-direction: row;
-
-  border: 1px solid white;
+  margin-bottom: 20px;
   border-radius: 30px;
+  background: #182226;
+  padding: 8px;
+  color: #fff;
+  display: flex;
   position: relative;
 }
 
+/* article_img_bg */
 .community_page .article_box .all_art_img {
   width: 155px;
   height: 155px;
-  margin-top: 20px;
   display: flex;
-  border-radius: 0px 90px 0px 0px;
-  background: url("/public/auth/default_art_photo.svg");
+  border-radius: 30px 0px 0px 30px;
+  background: url("/public/restaurant/burak.jpeg");
   background-size: cover;
-
   position: relative;
-}
-
-.community_page .article_box .all_art_img img {
-  width: 100%;
-  height: 100%;
-  border-top-left-radius: 30px;
-  border-top-right-radius: 30px;
-
-  position: relative;
-}
-
-.community_page .article_box .art_desc {
-  width: 50%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-}
-
-.community_page .article_box .art_desc .art_title {
-  width: 100%;
-  height: 90%;
-  padding: 0px 15px;
-  display: flex;
-  flex-direction: column;
-}
-
-/* center: all article info --> targetArticles.tsx */
-.community_page .all_art_box {
-  text-decoration: none;
-}
-/* for article photo */
-.community_page .all_art_box .all_art_img {
-  background-image: url("/public/community/default_art_photo.svg");
-}
-/* for article container */
-.community_page .all_art_box .all_art_container {
+  margin-right: 40px;
 }
 
 /* 1: for art_user_info */
-.community_page .all_art_box .all_art_container .art_user_info {
-  align-items: center;
+.community_page .art_user_info {
   display: flex;
+  flex-direction: row;
 }
 
-.community_page .art_user_info .art_user_info img {
+.community_page .art_user_info img {
   width: 35px;
+  height: 35px;
   border-radius: 50%;
   background-size: cover;
 }
 
-.community_page .all_art_box .art_user_name {
+.community_page .art_user_name {
+  width: 70px;
+  height: 19px;
+  margin-top: 8px;
+  margin-left: 8px;
+  text-decoration: none;
+  color: white;
+  font-size: 16px;
+  font-family: "Poppins";
+  font-weight: 400;
+  line-height: 26px;
+  word-wrap: break-word;
 }
 
 /* 2: art_info */
-.community_page .all_art_box .art_info {
+.community_page .art_info {
   display: flex;
   flex-direction: column;
   margin-top: 15px;
 }
 
-.community_page .all_art_box .art_info_title {
+.community_page .art_info_title {
+  width: 610px;
+  height: 33px;
+  text-decoration: none;
+  color: #e3c08d;
+  font-family: "Poppins";
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 33px;
 }
 
-.community_page .all_art_box .art_info_desc {
+.community_page .art_info_desc {
+  width: 610px;
+  height: 33px;
+  text-decoration: none;
+  color: #fff;
+  font-family: "Poppins";
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 26px;
+  margin-top: 5px;
+}
+
+/* 3: art date & likes & views */
+.community_page .art_date_views {
+  width: auto;
+  height: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.community_page .art_date_box {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.community_page .art_date_views .art_date {
+  display: flex;
+  margin-right: 30px;
+  line-height: 26px;
+}
+
+.community_page .art_date_box .art_likes {
+  display: flex;
+  margin-right: 30px;
+  align-items: center;
+}
+
+.community_page .art_date_box .art_views {
+  display: flex;
+  align-items: center;
+  margin-right: 30px;
 }
