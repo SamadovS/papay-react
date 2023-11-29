@@ -30,7 +30,7 @@
   flex-shrink: 0;
   color: #fff;
   text-align: center;
-  font-family: Poppins;
+  font-family: "Poppins";
   font-size: 45px;
   font-style: normal;
   font-weight: 600;
@@ -209,7 +209,7 @@
 
 .order_info_box .user_name {
   color: #08090d;
-  font-family: Commissioner;
+  font-family: "Commissioner";
   font-size: 28px;
   font-style: normal;
   font-weight: 600;
@@ -219,7 +219,7 @@
 
 .order_info_box .user_type {
   color: #a1a1a1;
-  font-family: Commissioner;
+  font-family: "Commissioner";
   font-size: 20px;
   font-style: normal;
   font-weight: 500;
@@ -240,12 +240,18 @@
 }
 
 .order_info_box .social_wrap .social_icons {
+  margin: 0 10px;
   cursor: pointer;
+  transition: color 0.3s ease; /* Add a smooth transition effect */
+}
+
+.order_info_box .social_wrap .social_icons:hover {
+  color: red;
 }
 
 .order_info_box .follow_status {
   color: #616164;
-  font-family: DM Sans;
+  font-family: "DM Sans";
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
@@ -254,7 +260,7 @@
 
 .order_info_box .user_desc {
   color: #616164;
-  font-family: DM Sans;
+  font-family: "DM Sans";
   font-size: 16px;
   font-style: normal;
   font-weight: 400;
@@ -285,7 +291,7 @@
     0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset,
     0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;
   color: #000;
-  font-family: Poppins;
+  font-family: "Poppins";
   font-size: 25px;
   font-style: normal;
   font-weight: 600;
@@ -329,7 +335,7 @@
 
 .follow_box .username_text {
   color: #fff;
-  font-family: Montserrat;
+  font-family: "Montserrat";
   font-size: 16px;
   font-style: normal;
   font-weight: 600;
@@ -338,7 +344,7 @@
 
 .follow_box .name_text {
   color: #fff;
-  font-family: Montserrat;
+  font-family: "Montserrat";
   font-size: 26px;
   font-style: normal;
   font-weight: 400;
@@ -395,7 +401,7 @@
     0px 4px 4px 0px rgba(255, 255, 255, 0.25) inset;
   color: #fff;
   text-align: center;
-  font-family: Montserrat;
+  font-family: "Montserrat";
   font-size: 12px;
   font-style: normal;
   font-weight: 600;
@@ -427,7 +433,7 @@
 .media_change_box span {
   color: #140342;
   text-align: center;
-  font-family: Poppins;
+  font-family: "Poppins";
   font-size: 16px;
   font-style: normal;
   font-weight: 600;
@@ -437,7 +443,7 @@
 
 .media_change_box p {
   color: #4f547b;
-  font-family: Poppins;
+  font-family: "Poppins";
   font-size: 14px;
   font-style: normal;
   font-weight: 600;
@@ -468,7 +474,7 @@
 
 .input_frame .spec_label {
   color: #fff;
-  font-family: Poppins;
+  font-family: "Poppins";
   font-size: 16px;
   font-style: normal;
   font-weight: 600;
@@ -481,7 +487,7 @@
   background: #f6f6f6;
   padding: 15px 20px;
   color: #4f547b;
-  font-family: Poppins;
+  font-family: "Poppins";
   font-size: 15px;
   font-style: normal;
   font-weight: 600;
@@ -508,7 +514,7 @@
   height: 200px;
   padding: 15px 20px;
   color: #4f547b;
-  font-family: Poppins;
+  font-family: "Poppins";
   font-size: 15px;
   font-style: normal;
   font-weight: 600;
