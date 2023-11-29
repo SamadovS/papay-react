@@ -83,7 +83,7 @@ export function VisitOtherPage() {
                 <TabPanel value="4">
                   <Box className="menu_name">Tanlangan Maqola</Box>
                   <Box className="menu_content">
-                    <TViewer text={`<h1>visit other page hi tviewer</h1>`} />
+                    <TViewer text={`<h1>tViewer in the Other Page</h1>`} />
                   </Box>
                 </TabPanel>
               </Box>

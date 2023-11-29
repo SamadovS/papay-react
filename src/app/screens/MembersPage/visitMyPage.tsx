@@ -97,7 +97,7 @@ export function VisitMyPage() {
                 <TabPanel value="6">
                   <Box className="menu_name">Tanlangan Maqolalar</Box>
                   <Box className="menu_content">
-                    <TViewer text="hi tviewer" />
+                    <TViewer text="<h2>It's tViewer page</h2>" />
                   </Box>
                 </TabPanel>
               </Box>

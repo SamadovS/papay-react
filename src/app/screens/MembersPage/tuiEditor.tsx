@@ -1,18 +1,19 @@
 import React, { useRef } from "react";
 import { Editor } from "@toast-ui/react-editor";
 import "@toast-ui/editor/dist/toastui-editor.css";
+
 import {
   Box,
   Button,
   FormControl,
   MenuItem,
-  Select,
   Stack,
-  TextField,
   Typography,
+  Select,
+  TextField,
 } from "@mui/material";
 
-export function TuiEditor(props: any) {
+export const TuiEditor = (props: any) => {
   const editorRef = useRef();
   return (
     <Stack>
@@ -53,7 +54,7 @@ export function TuiEditor(props: any) {
             id="filled-basic"
             label="Mavzu"
             variant="filled"
-            style={{ width: "300px", background: "#fff" }}
+            style={{ width: "300px", background: "white" }}
           />
         </Box>
       </Stack>
@@ -90,4 +91,4 @@ export function TuiEditor(props: any) {
       </Stack>
     </Stack>
   );
-}
+};

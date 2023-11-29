@@ -1,9 +1,9 @@
-import { Box, Stack } from "@mui/material";
 import React, { useRef } from "react";
+import { Box, Stack } from "@mui/material";
 import { Viewer } from "@toast-ui/react-editor";
 import "@toast-ui/editor/dist/toastui-editor.css";
 
-export function TViewer(props: any) {
+export const TViewer = (props: any) => {
   const editorRef = useRef();
   return (
     <Stack sx={{ background: "#fff", mt: "30px", borderRadius: "10px" }}>
@@ -18,4 +18,6 @@ export function TViewer(props: any) {
       </Box>
     </Stack>
   );
-}
+};
+
+// export default TViewer;
