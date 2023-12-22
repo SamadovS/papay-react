@@ -11,14 +11,10 @@ import "../../../css/home.css";
 
 export function HomePage() {
   // selector: store => data
+
   useEffect(() => {
     // backend data request => data
-    console.log("componentDidMount => Data fetch");
-
     // slice: data => store
-    return () => {
-      console.log("componentWillUnmount => process");
-    };
   }, []);
 
   return (

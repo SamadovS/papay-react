@@ -19,9 +19,9 @@ export const retrieveBestBoArticles = createSelector(
   selectHomePage,
   (HomePage) => HomePage.bestBoArticles
 );
-export const retrieveTrendArticles = createSelector(
+export const retrieveTrendBoArticles = createSelector(
   selectHomePage,
-  (HomePage) => HomePage.trendArticles
+  (HomePage) => HomePage.trendBoArticles
 );
 export const retrieveNewsBoArticles = createSelector(
   selectHomePage,
