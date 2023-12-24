@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import { Container } from "@mui/material";
 import { Statistics } from "./statistics";
 import { TopRestaurants } from "./topRestaurants";
 import { BestRestaurants } from "./bestRestaurants";
@@ -13,48 +12,49 @@ import "../../../css/home.css";
 import { useDispatch, useSelector } from "react-redux";
 import { Dispatch } from "@reduxjs/toolkit";
 import { createSelector } from "reselect";
-import { setTopRestaurants } from "./slice";
+import { setBestRestaurants, setTopRestaurants } from "./slice";
 import { retrieveTopRestaurants, retrieveBestRestaurants } from "./selector";
 import { Restaurant } from "../../../types/user";
+import RestaurantApiService from "../../apiServices/restaurantApiService";
 
 //** REDUX SLICE */
 const actionDispatch = (dispatch: Dispatch) => ({
   setTopRestaurants: (data: Restaurant[]) => dispatch(setTopRestaurants(data)),
+  setBestRestaurants: (data: Restaurant[]) =>
+    dispatch(setBestRestaurants(data)),
 });
 
-//** REDUX SELECTOR */
-const topRestaurantRetriever = createSelector(
-  retrieveTopRestaurants,
-  (topRestaurants) => ({
-    topRestaurants,
-  })
-);
-
-const bestRestaurantRetriever = createSelector(
-  retrieveBestRestaurants,
-  (bestRestaurants) => ({
-    bestRestaurants,
-  })
-);
+// //** REDUX SELECTOR */
+// const topRestaurantRetriever = createSelector(
+//   retrieveTopRestaurants,
+//   (topRestaurants) => ({
+//     topRestaurants,
+//   })
+// );
 
 export function HomePage() {
   /** INITIALIZATION */
-  const { setTopRestaurants } = actionDispatch(useDispatch());
-  const { topRestaurants } = useSelector(topRestaurantRetriever);
-  const { bestRestaurants } = useSelector(bestRestaurantRetriever);
+  const { setTopRestaurants, setBestRestaurants } = actionDispatch(
+    useDispatch()
+  );
 
-  console.log("topRestaurants>>>", topRestaurants);
-  console.log("bestRestaurants>>>", bestRestaurants);
-
-  // selector: store => data
-
+  // selector: store=> data storedan datani olib beradi
   useEffect(() => {
-    // backend data request => data
-    const data: Restaurant[] = [];
-
-    setTopRestaurants(data);
-
-    // slice: data => store
+    //backend data request=>data
+    const restaurantService = new RestaurantApiService();
+    restaurantService
+      .getTopRestaurants()
+      .then((data) => {
+        setTopRestaurants(data);
+      })
+      .catch((err) => console.log(err));
+    restaurantService
+      .getRestaurants({ page: 1, limit: 4, order: "mb_point" })
+      .then((data) => {
+        setBestRestaurants(data);
+      })
+      .catch((err) => console.log(err));
+    // slice: data => storega datanin yozadi
   }, []);
 
   return (

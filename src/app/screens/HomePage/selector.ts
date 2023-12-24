@@ -11,9 +11,9 @@ export const retrieveBestRestaurants = createSelector(
   selectHomePage,
   (HomePage) => HomePage.bestRestaurants
 );
-export const retrieveTrendRestaurants = createSelector(
+export const retrieveTrendProducts = createSelector(
   selectHomePage,
-  (HomePage) => HomePage.trendRestaurants
+  (HomePage) => HomePage.trendProducts
 );
 export const retrieveBestBoArticles = createSelector(
   selectHomePage,

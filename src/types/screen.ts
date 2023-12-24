@@ -9,7 +9,7 @@ export interface AppRootState {
 export interface HomePageState {
   topRestaurants: Restaurant[];
   bestRestaurants: Restaurant[];
-  trendRestaurants: Product[];
+  trendProducts: Product[];
   bestBoArticles: BoArticle[];
   trendBoArticles: BoArticle[];
   newsBoArticles: BoArticle[];
