@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
+import { MonetizationOn } from "@mui/icons-material";
 import { Box, Container, Stack } from "@mui/material";
-import MonetizationOn from "@mui/icons-material/MonetizationOn";
+import React, { useEffect } from "react";
 // REDUX
 import { useDispatch, useSelector } from "react-redux";
 import { Dispatch } from "@reduxjs/toolkit";

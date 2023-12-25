@@ -3,7 +3,7 @@ import { Product } from "./product";
 import { Restaurant } from "./user";
 
 export interface AppRootState {
-  homepage: HomePageState;
+  homePage: HomePageState;
 }
 
 export interface HomePageState {

@@ -24,14 +24,6 @@ const actionDispatch = (dispatch: Dispatch) => ({
     dispatch(setBestRestaurants(data)),
 });
 
-// //** REDUX SELECTOR */
-// const topRestaurantRetriever = createSelector(
-//   retrieveTopRestaurants,
-//   (topRestaurants) => ({
-//     topRestaurants,
-//   })
-// );
-
 export function HomePage() {
   /** INITIALIZATION */
   const { setTopRestaurants, setBestRestaurants } = actionDispatch(

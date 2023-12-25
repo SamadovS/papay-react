@@ -4,7 +4,7 @@ import { HomePageState } from "../../../types/screen";
 const initialState: HomePageState = {
   topRestaurants: [],
   bestRestaurants: [],
-  trendRestaurants: [],
+  trendProducts: [],
   bestBoArticles: [],
   trendBoArticles: [],
   newsBoArticles: [],
@@ -26,7 +26,7 @@ const HomePageSlice = createSlice({
     setBestBoArticles: (state, action) => {
       state.bestBoArticles = action.payload;
     },
-    setTrenBoArticles: (state, action) => {
+    setTrendBoArticles: (state, action) => {
       state.trendBoArticles = action.payload;
     },
     setNewsBoArticles: (state, action) => {
@@ -36,11 +36,12 @@ const HomePageSlice = createSlice({
 });
 
 export const {
+  //ishlatish
   setTopRestaurants,
   setBestRestaurants,
   setTrendProducts,
   setBestBoArticles,
-  setTrenBoArticles,
+  setTrendBoArticles,
   setNewsBoArticles,
 } = HomePageSlice.actions;
 

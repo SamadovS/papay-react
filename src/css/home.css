@@ -10,14 +10,14 @@
 .homepage .personage_img.left {
   width: 204px;
   height: 200px;
-  background: url("/public/home/papays.png");
+  background: url("/public/home/papays-1.png");
   background-size: cover;
 }
 
 .homepage .personage_img.right {
   width: 204px;
   height: 200px;
-  background: url("/public/home/papays.png");
+  background: url("/public/home/papays-1.png");
   transform: matrix(-1, 0, 0, 1, 0, 0);
   background-size: cover;
 }
@@ -499,7 +499,7 @@
   width: 216px;
   height: 200px;
   transform: matrix(1, 0, 0, 1, 0, 0);
-  background: url("/public//home/papays.png");
+  background: url("/public/home/papays-1.png");
   background-size: cover;
 }
 
@@ -508,6 +508,6 @@
   width: 216px;
   height: 200px;
   transform: matrix(-1, 0, 0, 1, 0, 0);
-  background: url("/public//home/papays.png");
+  background: url("/public/home/papays-1.png");
   background-size: cover;
 }

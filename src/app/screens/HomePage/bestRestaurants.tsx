@@ -1,17 +1,12 @@
 import React from "react";
+import { AspectRatio, Card, CssVarsProvider, Link } from "@mui/joy";
 import { Box, Button, Container, Stack } from "@mui/material";
-import {
-  AspectRatio,
-  Card,
-  CardOverflow,
-  CssVarsProvider,
-  IconButton,
-  Link,
-  Typography,
-} from "@mui/joy";
-import { Favorite, Visibility } from "@mui/icons-material";
+import { CardOverflow, IconButton } from "@mui/joy";
+import { Favorite } from "@mui/icons-material";
+import Typography from "@mui/joy/Typography";
 import LocationOnRoundedIcon from "@mui/icons-material/LocationOnRounded";
 import CallIcon from "@mui/icons-material/Call";
+import VisibilityIcon from "@mui/icons-material/Visibility";
 // REDUX
 import { useDispatch, useSelector } from "react-redux";
 import { createSelector } from "reselect";
@@ -32,12 +27,9 @@ export function BestRestaurants() {
   return (
     <div className="best_restaurant_frame">
       <img
-        src={"icons/line_group.svg"}
-        style={{
-          position: "absolute",
-          left: "6%",
-          // transform: "rotate(90deg)",
-        }}
+        className="design_img"
+        src="/icons/top_left_design.svg"
+        alt="design"
       />
       <Container sx={{ paddingTop: "153px" }}>
         <Stack flexDirection={"column"} alignItems={"center"}>
