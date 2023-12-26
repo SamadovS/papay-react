@@ -1,4 +1,4 @@
-import { Box, Container, Stack } from "@mui/material";
+import { Box, Button, Container, Stack } from "@mui/material";
 import React from "react";
 import Card from "@mui/joy/Card";
 import CardCover from "@mui/joy/CardCover";
@@ -10,7 +10,7 @@ import { CssVarsProvider } from "@mui/joy/styles";
 import { Favorite } from "@mui/icons-material";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 // REDUX
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { createSelector } from "reselect";
 import { retrieveTopRestaurants } from "./selector";
 import { Restaurant } from "../../../types/user";
@@ -27,6 +27,8 @@ const topRestaurantRetriever = createSelector(
 export function TopRestaurants() {
   const { topRestaurants } = useSelector(topRestaurantRetriever);
   console.log("topRestaurants:::", topRestaurants);
+  console.log("api:::", serverApi);
+
   return (
     <div className="top_restaurant_frame">
       <Container>
@@ -112,7 +114,7 @@ export function TopRestaurants() {
                             display: "flex",
                           }}
                         >
-                          {ele.mb_views}{" "}
+                          {ele.mb_views}
                           <VisibilityIcon
                             sx={{
                               fontSize: 20,
@@ -152,6 +154,21 @@ export function TopRestaurants() {
                 </CssVarsProvider>
               );
             })}
+          </Stack>
+          <Stack
+            flexDirection={"row"}
+            justifyContent={"flex-end"}
+            style={{ width: "100%" }}
+          >
+            <Button
+              style={{
+                background: "#1976d2",
+                color: "#ffffff",
+                marginTop: "16px",
+              }}
+            >
+              Barchasini Ko'rish
+            </Button>
           </Stack>
         </Stack>
       </Container>

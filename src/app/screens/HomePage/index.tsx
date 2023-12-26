@@ -24,15 +24,22 @@ const actionDispatch = (dispatch: Dispatch) => ({
     dispatch(setBestRestaurants(data)),
 });
 
+//** REDUX SELECTOR */
+const topRestaurantRetriever = createSelector(
+  retrieveTopRestaurants,
+  (topRestaurants) => ({
+    topRestaurants,
+  })
+);
+
 export function HomePage() {
   /** INITIALIZATIONS */
   const { setTopRestaurants, setBestRestaurants } = actionDispatch(
     useDispatch()
   );
 
-  // selector: store=> data storedan datani olib beradi
   useEffect(() => {
-    //backend data request=>data
+    // backend data request => data
     const restaurantService = new RestaurantApiService();
     restaurantService
       .getTopRestaurants()
@@ -40,6 +47,7 @@ export function HomePage() {
         setTopRestaurants(data);
       })
       .catch((err) => console.log(err));
+
     restaurantService
       .getRestaurants({ page: 1, limit: 4, order: "mb_point" })
       .then((data) => {

@@ -27,6 +27,7 @@ export function BestDishes() {
   // INITIALIZATIONS
   const { setTrendProducts } = actionDispatch(useDispatch());
   const { trendProducts } = useSelector(trendProductsRetriever);
+
   useEffect(() => {
     const productService = new ProductApiService();
     productService
@@ -34,6 +35,7 @@ export function BestDishes() {
       .then((data) => setTrendProducts(data))
       .catch((err: any) => console.log(err));
   }, []);
+
   return (
     <div className="best_dishes_frame">
       <Container>

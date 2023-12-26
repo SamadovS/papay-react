@@ -26,7 +26,7 @@ import {
 import { Definer } from "../lib/Definer";
 import assert from "assert";
 import MemberApiService from "./apiServices/memberApiService";
-import "../app/apiServices/verify";
+// import "../app/apiServices/verify";
 
 function App() {
   /** INITIALIZATIONS */
@@ -52,7 +52,7 @@ function App() {
     if (member_data) {
       member_data.mb_image = member_data.mb_image
         ? `${serverApi}/${member_data.mb_image}`
-        : "/auth/default/default_user.svg";
+        : "/auth/default_user.svg";
       setVerifiedMemberData(member_data);
     }
   }, []);
@@ -82,6 +82,7 @@ function App() {
       const memberApiService = new MemberApiService();
       await memberApiService.logOutRequest();
       await sweetTopSmallSuccessAlert("success", 700, true);
+      localStorage.removeItem("member_data");
     } catch (err: any) {
       console.log(err);
       sweetFailureProvider(Definer.general_err1);

@@ -8,7 +8,7 @@ import LocationOnRoundedIcon from "@mui/icons-material/LocationOnRounded";
 import CallIcon from "@mui/icons-material/Call";
 import VisibilityIcon from "@mui/icons-material/Visibility";
 // REDUX
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { createSelector } from "reselect";
 import { retrieveBestRestaurants } from "./selector";
 import { Restaurant } from "../../../types/user";
@@ -26,11 +26,6 @@ export function BestRestaurants() {
   const { bestRestaurants } = useSelector(bestRestaurantRetriever);
   return (
     <div className="best_restaurant_frame">
-      <img
-        className="design_img"
-        src="/icons/top_left_design.svg"
-        alt="design"
-      />
       <Container sx={{ paddingTop: "153px" }}>
         <Stack flexDirection={"column"} alignItems={"center"}>
           <Box className="category_title">Zo'r Restaurantlar</Box>
@@ -111,7 +106,7 @@ export function BestRestaurants() {
                             display: "flex",
                           }}
                         >
-                          {ele.mb_views}{" "}
+                          {ele.mb_views}
                           <VisibilityIcon
                             sx={{ fontSize: 20, marginLeft: "5px" }}
                           />
