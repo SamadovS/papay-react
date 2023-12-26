@@ -97,7 +97,7 @@ export function NavbarRestaurant(props: any) {
               />
             )}
             <Menu
-              anchorEl={props.props.anchorEl}
+              anchorEl={props.anchorEl}
               open={props.open}
               onClose={props.handleCloseLogout}
               onClick={props.handleCloseLogout}
