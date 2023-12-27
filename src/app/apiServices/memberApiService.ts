@@ -2,13 +2,10 @@ import axios from "axios";
 import assert from "assert";
 import { serverApi } from "../../lib/config";
 import { Definer } from "../../lib/Definer";
-import { ProductSearchObj } from "../../types/others";
-import { Product } from "../../types/product";
 import { Member } from "../../types/user";
 
 class MemberApiService {
   private readonly path: string;
-
   constructor() {
     this.path = serverApi;
   }
@@ -56,7 +53,7 @@ class MemberApiService {
         withCredentials: true,
       });
       assert.ok(result?.data, Definer.general_err1);
-      assert.ok(result?.data?.state != "fail", result?.data?.message);
+      assert.ok(result?.data.state != "fail", result?.data?.message);
 
       const logout_result = result.data.state;
       return logout_result == "success";
