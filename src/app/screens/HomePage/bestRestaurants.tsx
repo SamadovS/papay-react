@@ -219,6 +219,7 @@ export function BestRestaurants() {
                 color: "#ffffff",
                 marginTop: "16px",
               }}
+              onClick={goRestaurantHandler}
             >
               Barchasini Ko'rish
             </Button>
