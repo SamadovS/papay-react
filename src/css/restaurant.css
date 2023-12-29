@@ -36,6 +36,7 @@
   font-size: 20px;
   line-height: 25px;
   color: #ffffff;
+  cursor: pointer;
 }
 
 .restaurant_page .all_restaurants .fil_box a {
