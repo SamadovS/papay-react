@@ -32,7 +32,6 @@ const RestaurantPageSlice = createSlice({
 });
 
 export const {
-  //ishlatish
   setTargetRestaurants,
   setRandomRestaurants,
   setChosenRestaurant,
