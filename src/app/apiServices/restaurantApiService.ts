@@ -39,6 +39,22 @@ class RestaurantApiService {
       throw err;
     }
   }
+
+  async getChosenRestaurant(id: string): Promise<Restaurant> {
+    try {
+      const url = `/restaurants/${id}`,
+        result = await axios.get(this.path + url, { withCredentials: true });
+      // assert.ok(result, Definer.general_err1);
+      assert.ok(result?.data, Definer.general_err1);
+      assert.ok(result?.data?.state !== "fail", result?.data?.message);
+      console.log("state:::", result.data.state);
+      const restaurant: Restaurant = result.data.data;
+      return restaurant;
+    } catch (err: any) {
+      console.log(`ERROR ::: getChosenRestaurant ${err.message}`);
+      throw err;
+    }
+  }
 }
 
 export default RestaurantApiService;

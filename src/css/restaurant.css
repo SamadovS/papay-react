@@ -665,6 +665,7 @@
   left: 0;
   right: 0;
   bottom: 0;
+  padding-left: 15px;
 }
 
 .single_restaurant .about_restaurnt_stack .about_left_desc span {
@@ -841,6 +842,16 @@
 .chosen_dish_page .chosen_dish_slider .one_dish_pics {
   width: 100%;
   height: 100%;
+}
+.chosen_dish_page .bottom_dish_image {
+  height: 100%;
+  width: 105.54px;
+}
+
+.chosen_dish_page .bottom_dish_image img {
+  width: 160.54px;
+  height: 107px;
+  border-radius: 15px;
 }
 
 .chosen_dish_page .chosen_dish_slider .one_dish_pic {

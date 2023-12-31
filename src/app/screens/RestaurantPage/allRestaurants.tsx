@@ -56,7 +56,7 @@ export function AllRestaurants() {
   const history = useHistory();
   const { setTargetRestaurants } = actionDispatch(useDispatch());
   const { targetRestaurants } = useSelector(targetRestaurantsRetriever);
-  const [targetSearchObject, setTargetSearchObject] = useState<SearchObj>({
+  const [targetSearchObj, setTargetSearchObj] = useState<SearchObj>({
     page: 1,
     limit: 8,
     order: "mb_point",
@@ -67,10 +67,10 @@ export function AllRestaurants() {
     // TODO: Retrieve targetRestaurantsData
     const restaurantService = new RestaurantApiService();
     restaurantService
-      .getRestaurants(targetSearchObject)
+      .getRestaurants(targetSearchObj)
       .then((data) => setTargetRestaurants(data))
       .catch((err) => console.log(err));
-  }, [targetSearchObject]);
+  }, [targetSearchObj]);
 
   /** HANDLERS */
   const chosenRestaurantHandler = (id: string) => {
@@ -78,14 +78,14 @@ export function AllRestaurants() {
   };
 
   const searchHandler = (category: string) => {
-    targetSearchObject.page = 1;
-    targetSearchObject.order = category;
-    setTargetSearchObject({ ...targetSearchObject });
+    targetSearchObj.page = 1;
+    targetSearchObj.order = category;
+    setTargetSearchObj({ ...targetSearchObj });
   };
 
   const handlePaginationChange = (events: any, value: number) => {
-    targetSearchObject.page = value;
-    setTargetSearchObject({ ...targetSearchObject });
+    targetSearchObj.page = value;
+    setTargetSearchObj({ ...targetSearchObj });
   };
 
   const targetLikeHandler = async (e: any, id: string) => {
@@ -275,10 +275,8 @@ export function AllRestaurants() {
           <Stack className={"bottom_box"}>
             <img className={"line_img_two"} src={"/restaurant/line.svg"} />
             <Pagination
-              count={
-                targetSearchObject.page >= 3 ? targetSearchObject.page + 1 : 3
-              }
-              page={targetSearchObject.page}
+              count={targetSearchObj.page >= 3 ? targetSearchObj.page + 1 : 3}
+              page={targetSearchObj.page}
               renderItem={(item) => (
                 <PaginationItem
                   components={{

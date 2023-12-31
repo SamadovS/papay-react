@@ -11,6 +11,8 @@ import { serverApi } from "../../../lib/config";
 import { Product } from "../../../types/product";
 import { setTrendProducts } from "./slice";
 import ProductApiService from "../../apiServices/productApiService";
+import { useHistory, useParams } from "react-router-dom";
+
 // REDUX SLICE
 const actionDispatch = (dispatch: Dispatch) => ({
   setTrendProducts: (data: Product[]) => dispatch(setTrendProducts(data)),
@@ -24,7 +26,8 @@ const trendProductsRetriever = createSelector(
 );
 
 export function BestDishes() {
-  // INITIALIZATIONS
+  /** INITIALIZATIONS */
+  const history = useHistory();
   const { setTrendProducts } = actionDispatch(useDispatch());
   const { trendProducts } = useSelector(trendProductsRetriever);
 
@@ -35,6 +38,11 @@ export function BestDishes() {
       .then((data) => setTrendProducts(data))
       .catch((err: any) => console.log(err));
   }, []);
+
+  /** HANDLERS */
+  const chosenDishHandler = (id: string) => {
+    history.push(`/restaurant/dish/${id}`);
+  };
 
   return (
     <div className="best_dishes_frame">
@@ -58,7 +66,9 @@ export function BestDishes() {
                   >
                     <div className="dish_sale">{size_volume}</div>
                     <div className="view_btn">
-                      Batafsil ko'rish
+                      <div onClick={() => chosenDishHandler(product._id)}>
+                        Batafsil ko'rish
+                      </div>
                       <img
                         src="/icons/arrow_right.svg"
                         alt=""

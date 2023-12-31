@@ -12,6 +12,8 @@ import MonetizationOn from "@mui/icons-material/MonetizationOn";
 import RemoveRedEye from "@mui/icons-material/RemoveRedEye";
 import Badge from "@mui/material/Badge";
 import { useHistory, useParams } from "react-router-dom";
+import assert from "assert";
+import { Definer } from "../../../lib/Definer";
 
 import { Restaurant } from "../../../types/user";
 import { Product } from "../../../types/product";
@@ -19,6 +21,11 @@ import { ProductSearchObj } from "../../../types/others";
 import { serverApi } from "../../../lib/config";
 import ProductApiService from "../../apiServices/productApiService";
 import RestaurantApiService from "../../apiServices/restaurantApiService";
+import MemberApiService from "../../apiServices/memberApiService";
+import {
+  sweetErrorHandling,
+  sweetTopSmallSuccessAlert,
+} from "../../../lib/sweetAlert";
 
 // REDUX
 import { useDispatch, useSelector } from "react-redux";
@@ -28,19 +35,13 @@ import {
   retrieveRandomRestaurants,
   retrieveChosenRestaurant,
   retrieveTargetProducts,
+  // retrieveTargetRestaurants,
 } from "./selector";
 import {
   setRandomRestaurants,
   setChosenRestaurant,
   setTargetProducts,
 } from "./slice";
-import assert from "assert";
-import { Definer } from "../../../lib/Definer";
-import {
-  sweetErrorHandling,
-  sweetTopSmallSuccessAlert,
-} from "../../../lib/sweetAlert";
-import MemberApiService from "../../apiServices/memberApiService";
 
 // ** REDUX SLICE */
 const actionDispatch = (dispatch: Dispatch) => ({
@@ -71,7 +72,7 @@ const targetProductsRetriever = createSelector(
   })
 );
 
-export function OneRestaurant() {
+export function OneRestaurant(props: any) {
   /** INITIALIZATIONS */
   let { restaurant_id } = useParams<{ restaurant_id: string }>();
   const { setRandomRestaurants, setChosenRestaurant, setTargetProducts } =
@@ -95,7 +96,7 @@ export function OneRestaurant() {
 
   const [productRebuild, setProductRebuild] = useState<Date>(new Date());
   useEffect(() => {
-    // TODO: Retrieve targetRestaurantsData
+    // TODO: Retrieve Restaurants and Products Data
     // from restaurants
     const restaurantService = new RestaurantApiService();
     restaurantService
@@ -103,10 +104,10 @@ export function OneRestaurant() {
       .then((data) => setRandomRestaurants(data))
       .catch((err) => console.log(err));
 
-    // restaurantService
-    //   .getChosenRestaurant(chosenRestaurantId)
-    //   .then((data) => setChosenRestaurant(data))
-    //   .catch((err) => console.log(err));
+    restaurantService
+      .getChosenRestaurant(chosenRestaurantId)
+      .then((data) => setChosenRestaurant(data))
+      .catch((err) => console.log(err));
 
     // from products
     const productService = new ProductApiService();
@@ -114,16 +115,18 @@ export function OneRestaurant() {
       .getTargetProducts(targetProductSearchObj)
       .then((data) => setTargetProducts(data))
       .catch((err) => console.log(err));
-  }, [productRebuild, targetProductSearchObj]);
-  // chosenRestaurantId,
-  const history = useHistory();
+  }, [chosenRestaurantId, productRebuild, targetProductSearchObj]);
 
   /** HANDLERS */
+  const history = useHistory();
+
   const chosenRestaurantHandler = (id: string) => {
     setChosenRestaurantId(id);
     targetProductSearchObj.restaurant_mb_id = id;
     setTargetProductSearchObj({ ...targetProductSearchObj });
     history.push(`/restaurant/${id}`);
+
+    console.log("chosenRestaurant>>>", chosenRestaurant);
   };
 
   const searchCollectionHandler = (collection: string) => {
@@ -138,9 +141,9 @@ export function OneRestaurant() {
     setTargetProductSearchObj({ ...targetProductSearchObj });
   };
 
-  // const chosenDishHandler = (id: string) => {
-  //   history.push(`/restaurant/dish/${id}`);
-  // };
+  const chosenDishHandler = (id: string) => {
+    history.push(`/restaurant/dish/${id}`);
+  };
   const targetLikeHandler = async (e: any) => {
     try {
       assert.ok(localStorage.getItem("member_data"), Definer.auth_err1);
@@ -163,9 +166,9 @@ export function OneRestaurant() {
           {/* Stack 1: Name and Search button */}
           <Stack className={"avatar_big_box"}>
             <Box className={"top_text"}>
-              <p>Texas De Brazil Restaurant</p>
+              <p>{chosenRestaurant?.mb_nick} Restaurant</p>
               <Box className={"Single_search_big_box"}>
-                <form className={"Single_search_form"} action={""} method={""}>
+                <form className={"Single_search_form"} action="">
                   <input
                     type={"search"}
                     className={"Single_searchInput"}
@@ -328,7 +331,11 @@ export function OneRestaurant() {
                     : product.product_size + "size";
 
                 return (
-                  <Box className={"dish_box"} key={product._id}>
+                  <Box
+                    className={"dish_box"}
+                    key={product._id}
+                    onClick={() => chosenDishHandler(product._id)}
+                  >
                     <Box
                       className={"dish_img"}
                       sx={{
@@ -359,7 +366,12 @@ export function OneRestaurant() {
                           />
                         </Badge>
                       </Button>
-                      <Button className={"view_btn"}>
+                      <Button
+                        className={"view_btn"}
+                        // onClick={(e) => {
+                        //   props.onAdd(product);
+                        //   e.stopPropagation();}}
+                      >
                         <img
                           src={"/icons/shopping_chart.svg"}
                           style={{ display: "flex" }}
@@ -454,12 +466,12 @@ export function OneRestaurant() {
           <Box
             className={"about_left"}
             sx={{
-              backgroundImage: 'url("/restaurant/pizzar.jpg")',
+              backgroundImage: `url(${serverApi}/${chosenRestaurant?.mb_image})`,
             }}
           >
             <div className={"about_left_desc"}>
-              <span>Burak</span>
-              <p>Eng Mazzali Oshxona</p>
+              <span>{chosenRestaurant?.mb_nick} Restaurant</span>
+              <p>{chosenRestaurant?.mb_description}</p>
             </div>
           </Box>
           <Box className={"about_right"}>
