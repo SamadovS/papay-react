@@ -108,7 +108,7 @@ export function ChosenDish(props: any) {
       await sweetTopSmallSuccessAlert("success", 700, false);
       setProductRebuild(new Date());
     } catch (err: any) {
-      console.log("targetLikeProduct, ERROR:::", err);
+      console.log("targetLikeHandler, ERROR:::", err);
       sweetErrorHandling(err).then();
     }
   };
@@ -146,10 +146,10 @@ export function ChosenDish(props: any) {
               slidesPerView={chosenProduct?.product_images.length}
               centeredSlides={false}
               spaceBetween={20}
-              navigation={{
-                nextEl: ".restaurant-next",
-                prevEl: ".restaurant-prev",
-              }}
+              // navigation={{
+              //   nextEl: ".restaurant-next",
+              //   prevEl: ".restaurant-prev",
+              // }}
             >
               {chosenProduct?.product_images?.map((ele, order) => {
                 const image_path = `${serverApi}/${ele}`;

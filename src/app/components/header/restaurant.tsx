@@ -12,6 +12,7 @@ import {
 } from "@mui/material";
 import React from "react";
 import { NavLink } from "react-router-dom";
+import Basket from "./basket";
 
 export function NavbarRestaurant(props: any) {
   return (
@@ -53,17 +54,21 @@ export function NavbarRestaurant(props: any) {
               </Box>
             ) : null}
 
-            <Box className="hover-line" onClick={props.setPath}>
-              <NavLink to="/orders" activeClassName="underline">
-                Buyurtma
-              </NavLink>
-            </Box>
+            {props.verifiedMemberData ? (
+              <Box className="hover-line" onClick={props.setPath}>
+                <NavLink to="/orders" activeClassName="underline">
+                  Buyurtma
+                </NavLink>
+              </Box>
+            ) : null}
+
             <Box className="hover-line" onClick={props.setPath}>
               <NavLink to="/help" activeClassName="underline">
                 Yordam
               </NavLink>
             </Box>
-            <Box className="hover-line">
+
+            {/* <Box className="hover-line">
               <IconButton
                 aria-label="cart"
                 id="basic-button"
@@ -75,7 +80,15 @@ export function NavbarRestaurant(props: any) {
                   <img src="/icons/shopping_chart.svg" />
                 </Badge>
               </IconButton>
-            </Box>
+            </Box> */}
+
+            <Basket
+              onAdd={props.onAdd}
+              cartItems={props.cartItems}
+              onRemove={props.onRemove}
+              onDelete={props.onDelete}
+              onDeleteAll={props.onDeleteAll}
+            />
             {!props.verifiedMemberData ? (
               <Box>
                 <Button

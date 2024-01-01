@@ -154,7 +154,7 @@ export function OneRestaurant(props: any) {
       await sweetTopSmallSuccessAlert("success", 700, false);
       setProductRebuild(new Date());
     } catch (err: any) {
-      console.log("targetLikeProduct, ERROR:::", err);
+      console.log("targetLikeHandler, ERROR:::", err);
       sweetErrorHandling(err).then();
     }
   };
@@ -350,12 +350,15 @@ export function OneRestaurant(props: any) {
                         <Badge
                           badgeContent={product.product_likes}
                           color="primary"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                          }}
                         >
                           <Checkbox
+                            onClick={(e) => targetLikeHandler(e)}
                             icon={<FavoriteBorder style={{ color: "white" }} />}
                             id={product._id}
                             checkedIcon={<Favorite style={{ color: "red" }} />}
-                            onClick={targetLikeHandler}
                             /*@ts-ignore*/
                             checked={
                               product?.me_liked &&
@@ -368,9 +371,10 @@ export function OneRestaurant(props: any) {
                       </Button>
                       <Button
                         className={"view_btn"}
-                        // onClick={(e) => {
-                        //   props.onAdd(product);
-                        //   e.stopPropagation();}}
+                        onClick={(e) => {
+                          props.onAdd(product);
+                          e.stopPropagation();
+                        }}
                       >
                         <img
                           src={"/icons/shopping_chart.svg"}

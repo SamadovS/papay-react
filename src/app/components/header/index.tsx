@@ -13,6 +13,7 @@ import React, { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import { sweetTopSuccessAlert } from "../../../lib/sweetAlert";
 import { Logout } from "@mui/icons-material";
+import Basket from "./basket";
 
 export function NavbarHome(props: any) {
   return (
@@ -50,6 +51,14 @@ export function NavbarHome(props: any) {
 
             {props.verifiedMemberData ? (
               <Box className="hover-line" onClick={props.setPath}>
+                <NavLink to="/orders" activeClassName="underline">
+                  Buyurtma
+                </NavLink>
+              </Box>
+            ) : null}
+
+            {props.verifiedMemberData ? (
+              <Box className="hover-line" onClick={props.setPath}>
                 <NavLink to="/member-page" activeClassName="underline">
                   Sahifam
                 </NavLink>
@@ -57,28 +66,18 @@ export function NavbarHome(props: any) {
             ) : null}
 
             <Box className="hover-line" onClick={props.setPath}>
-              <NavLink to="/orders" activeClassName="underline">
-                Buyurtma
-              </NavLink>
-            </Box>
-            <Box className="hover-line" onClick={props.setPath}>
               <NavLink to="/help" activeClassName="underline">
                 Yordam
               </NavLink>
             </Box>
-            <Box className="hover-line">
-              <IconButton
-                aria-label="cart"
-                id="basic-button"
-                aria-controls={undefined}
-                aria-haspopup="true"
-                aria-expanded={undefined}
-              >
-                <Badge badgeContent={3} color="secondary">
-                  <img src="/icons/shopping_chart.svg" />
-                </Badge>
-              </IconButton>
-            </Box>
+
+            <Basket
+              onAdd={props.onAdd}
+              cartItems={props.cartItems}
+              onRemove={props.onRemove}
+              onDelete={props.onDelete}
+              onDeleteAll={props.onDeleteAll}
+            />
 
             {!props.verifiedMemberData ? (
               <Box>

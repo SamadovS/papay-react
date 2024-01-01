@@ -57,6 +57,7 @@ class MemberApiService {
       assert.ok(result?.data.state != "fail", result?.data?.message);
 
       const logout_result = result.data.state;
+      // console.log("logout_result>>>", logout_result);
       return logout_result == "success";
     } catch (err: any) {
       console.log(`ERROR ::: logOutRequest ${err.message}`);

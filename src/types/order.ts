@@ -1,6 +1,6 @@
 import { Product } from "./product";
 
-export interface order_items {
+export interface OrderItem {
   _id: string;
   item_quantity: number;
   item_price: number;
@@ -19,6 +19,6 @@ export interface Order {
   createdAt: Date;
   updatedAt: Date;
   //   from aggregations
-  order_items: any[];
+  order_items: OrderItem[];
   product_data: Product[];
 }

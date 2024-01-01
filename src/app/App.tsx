@@ -16,17 +16,22 @@ import { NavbarHome } from "./components/header";
 import { NavbarRestaurant } from "./components/header/restaurant";
 import { NavbarOthers } from "./components/header/others";
 import { Footer } from "./components/footer";
+
+import assert from "assert";
 import AuthenticationModal from "./components/auth";
-import { Member } from "../types/user";
 import { serverApi } from "../lib/config";
+import MemberApiService from "./apiServices/memberApiService";
+import "../app/apiServices/verify";
+
+import { Definer } from "../lib/Definer";
 import {
   sweetFailureProvider,
   sweetTopSmallSuccessAlert,
 } from "../lib/sweetAlert";
-import { Definer } from "../lib/Definer";
-import assert from "assert";
-import MemberApiService from "./apiServices/memberApiService";
-import "../app/apiServices/verify";
+
+import { CartItem } from "../types/others";
+import { Product } from "../types/product";
+import { Member } from "../types/user";
 
 function App() {
   /** INITIALIZATIONS */
@@ -43,6 +48,10 @@ function App() {
   const [anchorEl, setanchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 
+  const cartJson: any = localStorage.getItem("cart_data");
+  const current_cart = JSON.parse(cartJson) ?? [];
+  const [cartItems, setCartItems] = useState<CartItem[]>(current_cart);
+
   useEffect(() => {
     console.log("=== useEffect: App === ");
     const memberDataJson: any = localStorage.getItem("member_data")
@@ -55,7 +64,7 @@ function App() {
         : "/auth/default_user.svg";
       setVerifiedMemberData(member_data);
     }
-  }, []);
+  }, [signUpOpen, loginOpen]);
 
   /** HANDLERS */
   const handleSignUpOpen = () => {
@@ -76,6 +85,7 @@ function App() {
   const handleCloseLogout = (event: React.MouseEvent<HTMLElement>) => {
     setanchorEl(null);
   };
+  // handle Logout Request
   const handleLogoutRequest = async () => {
     try {
       // assert.ok(false, "test");
@@ -87,6 +97,64 @@ function App() {
       console.log(err);
       sweetFailureProvider(Definer.general_err1);
     }
+  };
+
+  // on Add function
+  const onAdd = (product: Product) => {
+    const exist: any = cartItems.find(
+      (item: CartItem) => item._id === product._id
+    );
+    if (exist) {
+      const cart_updated = cartItems.map((item: CartItem) =>
+        item._id === product._id
+          ? { ...exist, quantity: exist.quantity + 1 }
+          : item
+      );
+      setCartItems(cart_updated);
+      localStorage.setItem("cart_data", JSON.stringify(cart_updated));
+    } else {
+      const new_item: CartItem = {
+        _id: product._id,
+        quantity: 1,
+        name: product.product_name,
+        price: product.product_price,
+        image: product.product_images[0],
+      };
+      const cart_updated = [...cartItems, { ...new_item }];
+      setCartItems(cart_updated);
+      localStorage.setItem("cart_data", JSON.stringify(cart_updated));
+    }
+  };
+  const onRemove = (item: CartItem) => {
+    const item_data: any = cartItems.find(
+      (ele: CartItem) => ele._id === item._id
+    );
+    if (item_data.quantity === 1) {
+      const cart_updated = cartItems.filter(
+        (ele: CartItem) => ele._id !== item._id
+      );
+      setCartItems(cart_updated);
+      localStorage.setItem("cart_data", JSON.stringify(cart_updated));
+    } else {
+      const cart_updated = cartItems.map((ele: CartItem) =>
+        ele._id === item._id
+          ? { ...item_data, quantity: item_data.quantity - 1 }
+          : ele
+      );
+      setCartItems(cart_updated);
+      localStorage.setItem("cart_data", JSON.stringify(cart_updated));
+    }
+  };
+  const onDelete = (item: CartItem) => {
+    const cart_updated = cartItems.filter(
+      (ele: CartItem) => ele._id !== item._id
+    );
+    setCartItems(cart_updated);
+    localStorage.setItem("cart_data", JSON.stringify(cart_updated));
+  };
+  const onDeleteAll = () => {
+    setCartItems([]);
+    localStorage.removeItem("cart_data");
   };
 
   return (
@@ -102,6 +170,11 @@ function App() {
           handleCloseLogout={handleCloseLogout}
           handleLogoutRequest={handleLogoutRequest}
           verifiedMemberData={verifiedMemberData}
+          cartItems={cartItems}
+          onAdd={onAdd}
+          onRemove={onRemove}
+          onDelete={onDelete}
+          onDeleteAll={onDeleteAll}
         />
       ) : main_path.includes("restaurant") ? (
         <NavbarRestaurant
@@ -114,6 +187,11 @@ function App() {
           handleCloseLogout={handleCloseLogout}
           handleLogoutRequest={handleLogoutRequest}
           verifiedMemberData={verifiedMemberData}
+          cartItems={cartItems}
+          onAdd={onAdd}
+          onRemove={onRemove}
+          onDelete={onDelete}
+          onDeleteAll={onDeleteAll}
         />
       ) : (
         <NavbarOthers
@@ -126,6 +204,11 @@ function App() {
           handleCloseLogout={handleCloseLogout}
           handleLogoutRequest={handleLogoutRequest}
           verifiedMemberData={verifiedMemberData}
+          cartItems={cartItems}
+          onAdd={onAdd}
+          onRemove={onRemove}
+          onDelete={onDelete}
+          onDeleteAll={onDeleteAll}
         />
       )}
 

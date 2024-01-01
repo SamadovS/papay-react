@@ -4,11 +4,13 @@ import { serverApi } from "../../lib/config";
 import { Definer } from "../../lib/Definer";
 import { Restaurant } from "../../types/user";
 import { SearchObj } from "../../types/others";
+
 class RestaurantApiService {
   private readonly path: string;
   constructor() {
     this.path = serverApi;
   }
+
   async getTopRestaurants(): Promise<Restaurant[]> {
     try {
       const url = "/restaurants?order=top&page=1&limit=4",

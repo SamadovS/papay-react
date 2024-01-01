@@ -4,6 +4,7 @@ import { serverApi } from "../../lib/config";
 import { Definer } from "../../lib/Definer";
 import { ProductSearchObj } from "../../types/others";
 import { Product } from "../../types/product";
+
 class ProductApiService {
   private readonly path: string;
   constructor() {
