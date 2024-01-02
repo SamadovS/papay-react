@@ -18,6 +18,8 @@ export default function Basket(props: any) {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 
+  const { cartItems } = props;
+
   /** HANDLERS **/
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
@@ -39,7 +41,7 @@ export default function Basket(props: any) {
         onClick={handleClick}
       >
         <Badge badgeContent={1} color="secondary">
-          <img src={"/icons/shopping_cart.svg"} />
+          <img src={"/icons/shopping_chart.svg"} />
         </Badge>
       </IconButton>
       <Menu
@@ -84,8 +86,8 @@ export default function Basket(props: any) {
 
           <Box className={"orders_main_wrapper"}>
             <Box className={"orders_wrapper"}>
-              {[0].map(() => {
-                const image_path = "/others/qovurma.jpeg";
+              {cartItems.map((item: CartItem) => {
+                const image_path = `${serverApi}/${item.image}`;
                 return (
                   <Box className={"basket_info_box"}>
                     <div className={"cancel_btn"}>
@@ -95,8 +97,10 @@ export default function Basket(props: any) {
                       />
                     </div>
                     <img src={image_path} className={"product_img"} />
-                    <span className={"product_name"}>Shashlik</span>
-                    <p className={"product_price"}>$10 x 2</p>
+                    <span className={"product_name"}>{item.name}</span>
+                    <p className={"product_price"}>
+                      {item.price} x {item.quantity}
+                    </p>
                     <Box sx={{ minWidth: 120 }}>
                       <div className="col-2">
                         <button
@@ -118,7 +122,7 @@ export default function Basket(props: any) {
               })}
             </Box>
           </Box>
-          {true ? (
+          {cartItems.length > 0 ? (
             <Box className={"to_order_box"}>
               <span className={"price_text"}>Jami: $22 (20 + 2)</span>
               <Button

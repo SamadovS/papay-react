@@ -48,8 +48,11 @@ function App() {
   const [anchorEl, setanchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 
+  // pastdagi <CartItem[]> ning boshlangich qiymati
   const cartJson: any = localStorage.getItem("cart_data");
-  const current_cart = JSON.parse(cartJson) ?? [];
+  const current_cart: CartItem[] = JSON.parse(cartJson) ?? [];
+
+  // useState hook orqali hosil qilyapmiz
   const [cartItems, setCartItems] = useState<CartItem[]>(current_cart);
 
   useEffect(() => {
@@ -214,7 +217,7 @@ function App() {
 
       <Switch>
         <Route path="/restaurant">
-          <RestaurantPage />
+          <RestaurantPage onAdd={onAdd} />
         </Route>
         <Route path="/community">
           <CommunityPage />

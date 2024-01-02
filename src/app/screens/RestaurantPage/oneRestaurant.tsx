@@ -74,6 +74,7 @@ const targetProductsRetriever = createSelector(
 
 export function OneRestaurant(props: any) {
   /** INITIALIZATIONS */
+  const history = useHistory();
   let { restaurant_id } = useParams<{ restaurant_id: string }>();
   const { setRandomRestaurants, setChosenRestaurant, setTargetProducts } =
     actionDispatch(useDispatch());
@@ -118,8 +119,6 @@ export function OneRestaurant(props: any) {
   }, [chosenRestaurantId, productRebuild, targetProductSearchObj]);
 
   /** HANDLERS */
-  const history = useHistory();
-
   const chosenRestaurantHandler = (id: string) => {
     setChosenRestaurantId(id);
     targetProductSearchObj.restaurant_mb_id = id;
