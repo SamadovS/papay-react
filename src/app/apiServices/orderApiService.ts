@@ -17,9 +17,11 @@ class OrderApiService {
         result = await axios.post(this.path + url, data, {
           withCredentials: true,
         });
+
       assert.ok(result?.data, Definer.general_err1);
       assert.ok(result?.data?.state !== "fail", result?.data?.message);
       console.log("state:::", result.data.state);
+
       const order: any = result.data.data;
       return true;
     } catch (err: any) {

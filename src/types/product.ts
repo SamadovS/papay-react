@@ -12,7 +12,7 @@ export interface Product {
   product_price: number;
   product_discount: number;
   product_left_cnt: number;
-  product_size: string;
+  product_size: number;
   product_volume: number;
   product_description: string;
   product_images: string[];

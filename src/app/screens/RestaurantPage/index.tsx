@@ -14,7 +14,7 @@ export function RestaurantPage(props: any) {
     <div className="restaurant_page">
       <Switch>
         <Route path={`${restaurant.path}/dish/:dish_id`}>
-          <ChosenDish />
+          <ChosenDish onAdd={props.onAdd} />
         </Route>
         <Route path={`${restaurant.path}/:restaurant_id`}>
           <OneRestaurant onAdd={props.onAdd} />

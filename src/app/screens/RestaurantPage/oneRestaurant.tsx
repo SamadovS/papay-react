@@ -327,7 +327,7 @@ export function OneRestaurant(props: any) {
                 const size_volume =
                   product.product_collection === "drink"
                     ? product.product_volume + "l"
-                    : product.product_size + "size";
+                    : product.product_size + " size";
 
                 return (
                   <Box
@@ -400,7 +400,7 @@ export function OneRestaurant(props: any) {
                       </span>
                       <div className={"dish_desc_text"}>
                         <MonetizationOn />
-                        {product.product_size}
+                        {product.product_price}
                       </div>
                     </Box>
                   </Box>

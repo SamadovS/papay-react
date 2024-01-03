@@ -55,7 +55,7 @@ export function BestDishes() {
               const size_volume =
                 product.product_collection === "drink"
                   ? product.product_volume + "l"
-                  : product.product_size + " size";
+                  : product.product_size + "  size";
               return (
                 <Box className="dish_box">
                   <Stack

@@ -68,26 +68,13 @@ export function NavbarRestaurant(props: any) {
               </NavLink>
             </Box>
 
-            {/* <Box className="hover-line">
-              <IconButton
-                aria-label="cart"
-                id="basic-button"
-                aria-controls={undefined}
-                aria-haspopup="true"
-                aria-expanded={undefined}
-              >
-                <Badge badgeContent={3} color="secondary">
-                  <img src="/icons/shopping_chart.svg" />
-                </Badge>
-              </IconButton>
-            </Box> */}
-
             <Basket
-              onAdd={props.onAdd}
               cartItems={props.cartItems}
+              onAdd={props.onAdd}
               onRemove={props.onRemove}
               onDelete={props.onDelete}
               onDeleteAll={props.onDeleteAll}
+              setOrderRebuild={props.setOrderRebuild}
             />
             {!props.verifiedMemberData ? (
               <Box>

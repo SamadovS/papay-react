@@ -54,7 +54,7 @@ function App() {
 
   // useState hook orqali hosil qilyapmiz
   const [cartItems, setCartItems] = useState<CartItem[]>(current_cart);
-
+  const [orderRebuild, setOrderRebuild] = useState<Date>(new Date());
   useEffect(() => {
     console.log("=== useEffect: App === ");
     const memberDataJson: any = localStorage.getItem("member_data")
@@ -67,7 +67,7 @@ function App() {
         : "/auth/default_user.svg";
       setVerifiedMemberData(member_data);
     }
-  }, [signUpOpen, loginOpen]);
+  }, [signUpOpen, loginOpen, orderRebuild]);
 
   /** HANDLERS */
   const handleSignUpOpen = () => {
@@ -178,6 +178,7 @@ function App() {
           onRemove={onRemove}
           onDelete={onDelete}
           onDeleteAll={onDeleteAll}
+          setOrderRebuild={setOrderRebuild}
         />
       ) : main_path.includes("restaurant") ? (
         <NavbarRestaurant
@@ -195,6 +196,7 @@ function App() {
           onRemove={onRemove}
           onDelete={onDelete}
           onDeleteAll={onDeleteAll}
+          setOrderRebuild={setOrderRebuild}
         />
       ) : (
         <NavbarOthers
@@ -212,6 +214,7 @@ function App() {
           onRemove={onRemove}
           onDelete={onDelete}
           onDeleteAll={onDeleteAll}
+          setOrderRebuild={setOrderRebuild}
         />
       )}
 
