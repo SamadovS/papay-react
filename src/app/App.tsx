@@ -55,6 +55,7 @@ function App() {
   // useState hook orqali hosil qilyapmiz
   const [cartItems, setCartItems] = useState<CartItem[]>(current_cart);
   const [orderRebuild, setOrderRebuild] = useState<Date>(new Date());
+
   useEffect(() => {
     console.log("=== useEffect: App === ");
     const memberDataJson: any = localStorage.getItem("member_data")
@@ -226,7 +227,10 @@ function App() {
           <CommunityPage />
         </Route>
         <Route path="/orders">
-          <OrdersPage />
+          <OrdersPage
+            orderRebuild={orderRebuild}
+            setOrderRebuild={setOrderRebuild}
+          />
         </Route>
         <Route path="/member-page">
           <MembersPage />

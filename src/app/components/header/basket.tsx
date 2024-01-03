@@ -44,8 +44,10 @@ export default function Basket(props: any) {
       assert.ok(localStorage.getItem("member_data"), Definer.auth_err1);
       const order = new OrderApiService();
       await order.createOrder(cartItems);
+
       onDeleteAll();
       handleClose();
+
       setOrderRebuild(new Date());
       history.push("/orders");
     } catch (err) {
