@@ -65,7 +65,7 @@ function App() {
     if (member_data) {
       member_data.mb_image = member_data.mb_image
         ? `${serverApi}/${member_data.mb_image}`
-        : "/auth/default_user.svg";
+        : "/auth/profile_picture.jpg";
       setVerifiedMemberData(member_data);
     }
   }, [signUpOpen, loginOpen, orderRebuild]);
@@ -230,6 +230,7 @@ function App() {
           <OrdersPage
             orderRebuild={orderRebuild}
             setOrderRebuild={setOrderRebuild}
+            verifiedMemberData={verifiedMemberData}
           />
         </Route>
         <Route path="/member-page">

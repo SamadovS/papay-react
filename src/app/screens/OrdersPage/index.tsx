@@ -9,6 +9,8 @@ import LocationOnIcon from "@mui/icons-material/LocationOn";
 import PausedOrders from "./pausedOrders";
 import ProcessOrders from "./processOrders";
 import FinishedOrders from "./finishedOrders";
+import OrderApiService from "../../apiServices/orderApiService";
+import { Member } from "../../../types/user";
 
 import { Order } from "../../../types/order";
 
@@ -16,7 +18,6 @@ import { Order } from "../../../types/order";
 import { useDispatch } from "react-redux";
 import { Dispatch } from "@reduxjs/toolkit";
 import { setFinishedOrders, setPausedOrders, setProcessOrders } from "./slice";
-import OrderApiService from "../../apiServices/orderApiService";
 
 // REDUX SLICE
 const actionDispatch = (dispatch: Dispatch) => ({
@@ -30,6 +31,7 @@ export function OrdersPage(props: any) {
   const [value, setValue] = useState("1");
   const { setPausedOrders, setProcessOrders, setFinishedOrders } =
     actionDispatch(useDispatch());
+  const verifiedMemberData: Member | null = props.verifiedMemberData;
 
   useEffect(() => {
     const orderService = new OrderApiService();
@@ -95,10 +97,14 @@ export function OrdersPage(props: any) {
               alignItems={"center"}
             >
               <div className={"order_user_img"}>
-                <img src={"/auth/ddefault_user.svg"} />
+                <img src={"/auth/profile_picture.jpg"} />
               </div>
-              <span className={"order_user_name"}>Maria</span>
-              <span className={"order_user_prof"}>Foydalanuvchi</span>
+              <span className={"order_user_name"}>
+                {verifiedMemberData?.mb_nick}
+              </span>
+              <span className={"order_user_prof"}>
+                {verifiedMemberData?.mb_type ?? "Foydalanuvchi"}
+              </span>
             </Box>
             <Box className={"line"}></Box>
             <Box
@@ -111,7 +117,9 @@ export function OrdersPage(props: any) {
               <div style={{ display: "flex" }}>
                 <LocationOnIcon />
               </div>
-              <div>Yunusabad 1-4, Tashkent</div>
+              <div>
+                {verifiedMemberData?.mb_address ?? "Manzil kiritlmagan"}
+              </div>
             </Box>
           </Box>
           <Box className={"payment_box"}>
