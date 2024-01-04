@@ -88,7 +88,7 @@ export function NavbarHome(props: any) {
                     color: "#ffffff",
                     background: "#1976d2",
                   }}
-                  onClick={props.handleLoginOpen}
+                  onClick={props.handleLogInOpen}
                 >
                   KIRISH
                 </Button>
@@ -97,15 +97,15 @@ export function NavbarHome(props: any) {
               <img
                 style={{ width: "48px", height: "48px", borderRadius: "24px" }}
                 src={props.verifiedMemberData.mb_image}
-                onClick={props.handleLogoutClick}
+                onClick={props.handleLogOutClick}
               />
             )}
 
             <Menu
               anchorEl={props.anchorEl}
               open={props.open}
-              onClose={props.handleCloseLogout}
-              onClick={props.handleCloseLogout}
+              onClose={props.handleCloseLogOut}
+              onClick={props.handleCloseLogOut}
               slotProps={{
                 // Use slotProps instead of PaperProps
                 paper: {
@@ -140,7 +140,7 @@ export function NavbarHome(props: any) {
             >
               <MenuItem
                 /* onClick handler goes here */
-                onClick={props.handleLogoutRequest}
+                onClick={props.handleLogOutRequest}
               >
                 <ListItemIcon>
                   <Logout fontSize="small" style={{ color: "blue" }} />

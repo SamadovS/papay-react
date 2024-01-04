@@ -40,24 +40,18 @@ function App() {
   );
   const [path, setPath] = useState();
   const main_path = window.location.pathname;
-  // console.log("main_path", main_path);
-
   const [signUpOpen, setSignUpOpen] = useState(false);
-  const [loginOpen, setLoginOpen] = useState(false);
+  const [logInOpen, setLogInOpen] = useState(false);
 
-  const [anchorEl, setanchorEl] = useState<null | HTMLElement>(null);
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 
-  // pastdagi <CartItem[]> ning boshlangich qiymati
   const cartJson: any = localStorage.getItem("cart_data");
-  const current_cart: CartItem[] = JSON.parse(cartJson) ?? [];
-
-  // useState hook orqali hosil qilyapmiz
+  const current_cart = JSON.parse(cartJson) ?? [];
   const [cartItems, setCartItems] = useState<CartItem[]>(current_cart);
   const [orderRebuild, setOrderRebuild] = useState<Date>(new Date());
 
   useEffect(() => {
-    console.log("=== useEffect: App === ");
     const memberDataJson: any = localStorage.getItem("member_data")
       ? localStorage.getItem("member_data")
       : null;
@@ -68,42 +62,34 @@ function App() {
         : "/auth/profile_picture.jpg";
       setVerifiedMemberData(member_data);
     }
-  }, [signUpOpen, loginOpen, orderRebuild]);
+  }, [signUpOpen, logInOpen]);
 
   /** HANDLERS */
-  const handleSignUpOpen = () => {
-    setSignUpOpen(true);
+  const handleSignUpOpen = () => setSignUpOpen(true);
+  const handleSignUpClose = () => setSignUpOpen(false);
+  const handleLogInOpen = () => setLogInOpen(true);
+  const handleLogInClose = () => setLogInOpen(false);
+
+  const handleLogOutClick = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget);
   };
-  const handleSignUpClose = () => {
-    setSignUpOpen(false);
+  const handleCloseLogOut = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(null);
   };
-  const handleLoginOpen = () => {
-    setLoginOpen(true);
-  };
-  const handleLoginClose = () => {
-    setLoginOpen(false);
-  };
-  const handleLogoutClick = (event: React.MouseEvent<HTMLElement>) => {
-    setanchorEl(event.currentTarget);
-  };
-  const handleCloseLogout = (event: React.MouseEvent<HTMLElement>) => {
-    setanchorEl(null);
-  };
-  // handle Logout Request
-  const handleLogoutRequest = async () => {
+
+  // handle LogOut Request
+  const handleLogOutRequest = async () => {
     try {
-      // assert.ok(false, "test");
       const memberApiService = new MemberApiService();
       await memberApiService.logOutRequest();
       await sweetTopSmallSuccessAlert("success", 700, true);
-      // localStorage.removeItem("member_data");
-    } catch (err: any) {
+    } catch (err) {
       console.log(err);
       sweetFailureProvider(Definer.general_err1);
     }
   };
 
-  // on Add function
+  // ORDERS PROCESS
   const onAdd = (product: Product) => {
     const exist: any = cartItems.find(
       (item: CartItem) => item._id === product._id
@@ -166,13 +152,13 @@ function App() {
       {main_path == "/" ? (
         <NavbarHome
           setPath={setPath}
-          handleLoginOpen={handleLoginOpen}
           handleSignUpOpen={handleSignUpOpen}
+          handleLogInOpen={handleLogInOpen}
+          handleLogOutClick={handleLogOutClick}
+          handleCloseLogOut={handleCloseLogOut}
           anchorEl={anchorEl}
           open={open}
-          handleLogoutClick={handleLogoutClick}
-          handleCloseLogout={handleCloseLogout}
-          handleLogoutRequest={handleLogoutRequest}
+          handleLogOutRequest={handleLogOutRequest}
           verifiedMemberData={verifiedMemberData}
           cartItems={cartItems}
           onAdd={onAdd}
@@ -184,13 +170,13 @@ function App() {
       ) : main_path.includes("restaurant") ? (
         <NavbarRestaurant
           setPath={setPath}
-          handleLoginOpen={handleLoginOpen}
           handleSignUpOpen={handleSignUpOpen}
+          handleLogInOpen={handleLogInOpen}
+          handleLogOutClick={handleLogOutClick}
+          handleCloseLogOut={handleCloseLogOut}
+          handleLogOutRequest={handleLogOutRequest}
           anchorEl={anchorEl}
           open={open}
-          handleLogoutClick={handleLogoutClick}
-          handleCloseLogout={handleCloseLogout}
-          handleLogoutRequest={handleLogoutRequest}
           verifiedMemberData={verifiedMemberData}
           cartItems={cartItems}
           onAdd={onAdd}
@@ -202,13 +188,13 @@ function App() {
       ) : (
         <NavbarOthers
           setPath={setPath}
-          handleLoginOpen={handleLoginOpen}
           handleSignUpOpen={handleSignUpOpen}
+          handleLogInOpen={handleLogInOpen}
+          handleLogOutClick={handleLogOutClick}
+          handleCloseLogOut={handleCloseLogOut}
+          handleLogOutRequest={handleLogOutRequest}
           anchorEl={anchorEl}
           open={open}
-          handleLogoutClick={handleLogoutClick}
-          handleCloseLogout={handleCloseLogout}
-          handleLogoutRequest={handleLogoutRequest}
           verifiedMemberData={verifiedMemberData}
           cartItems={cartItems}
           onAdd={onAdd}
@@ -250,12 +236,12 @@ function App() {
       <Footer />
 
       <AuthenticationModal
-        loginOpen={loginOpen}
-        handleLoginOpen={handleLoginOpen}
-        handleLoginClose={handleLoginClose}
         signUpOpen={signUpOpen}
         handleSignUpOpen={handleSignUpOpen}
-        handleSignUpClose={handleSignUpClose}
+        handleSingUpClose={handleSignUpClose}
+        logInOpen={logInOpen}
+        handleLogInOpen={handleLogInOpen}
+        handleLogInClose={handleLogInClose}
       />
     </Router>
   );
