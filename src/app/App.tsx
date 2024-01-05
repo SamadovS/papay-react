@@ -238,7 +238,7 @@ function App() {
       <AuthenticationModal
         signUpOpen={signUpOpen}
         handleSignUpOpen={handleSignUpOpen}
-        handleSingUpClose={handleSignUpClose}
+        handleSignUpClose={handleSignUpClose}
         logInOpen={logInOpen}
         handleLogInOpen={handleLogInOpen}
         handleLogInClose={handleLogInClose}

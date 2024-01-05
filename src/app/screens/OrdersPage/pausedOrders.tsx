@@ -121,10 +121,18 @@ export default function PausedOrders(props: any) {
                 </div>
 
                 <div>
-                  <Button className="order_cancel" onClick={deleteOrderHandler}>
+                  <Button
+                    className="order_cancel"
+                    value={order._id}
+                    onClick={deleteOrderHandler}
+                  >
                     Bekor qilish
                   </Button>
-                  <Button className="order_pay" onClick={processOrderHandler}>
+                  <Button
+                    className="order_pay"
+                    value={order._id}
+                    onClick={processOrderHandler}
+                  >
                     To'lash
                   </Button>
                 </div>

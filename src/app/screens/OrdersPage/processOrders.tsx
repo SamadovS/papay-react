@@ -108,6 +108,7 @@ export default function ProcessOrders(props: any) {
                   <Button
                     className="order_complete"
                     onClick={finishOrderHandler}
+                    value={order._id}
                   >
                     Yakunlash
                   </Button>

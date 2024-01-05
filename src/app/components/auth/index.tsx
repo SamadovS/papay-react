@@ -84,11 +84,11 @@ export default function AuthenticationModal(props: any) {
       };
       const mbApiService = new MemberApiService();
       await mbApiService.signupRequest(signup_data);
-      props.handleSingUpClose();
+      props.handleSignUpClose();
       window.location.reload();
     } catch (err) {
       console.log(err);
-      props.handleSingUpClose();
+      props.handleSignUpClose();
       sweetErrorHandling(err).then();
     }
   };
@@ -101,7 +101,7 @@ export default function AuthenticationModal(props: any) {
         aria-describedby="transition-modal-description"
         className={classes.modal}
         open={props.signUpOpen}
-        onClose={props.handleSingUpClose}
+        onClose={props.handleSignUpClose}
         closeAfterTransition
         BackdropComponent={Backdrop}
         BackdropProps={{ timeout: 500 }}
