@@ -220,7 +220,7 @@ function App() {
           />
         </Route>
         <Route path="/member-page">
-          <MembersPage />
+          <MembersPage verifiedMemberData={verifiedMemberData} />
         </Route>
         <Route path="/help">
           <HelpPage />
