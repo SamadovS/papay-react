@@ -12,20 +12,75 @@ import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import "../../../css/community.css";
 import { TargetArticles } from "./targetArticles";
 import { CommunityChats } from "./communityChats";
+import CommunityApiService from "../../apiServices/communityApiService";
+import { BoArticle, SearchArticleObj } from "../../../types/boArticle";
 
-// const targetBoArticles = [1, 2, 3, 4, 5];
+// REDUX
+import { useDispatch, useSelector } from "react-redux";
+import { createSelector } from "reselect";
+import { Dispatch } from "@reduxjs/toolkit";
+import { setTargetBoArticles } from "./slice";
+import { retrieveTargetBoArticles } from "./selector";
+
+//** REDUX SLICE */
+const actionDispatch = (dispatch: Dispatch) => ({
+  setTargetBoArticles: (data: BoArticle[]) =>
+    dispatch(setTargetBoArticles(data)),
+});
+
+//** REDUX SELECTOR */
+const targetBoArticlesRetriever = createSelector(
+  retrieveTargetBoArticles,
+  (targetBoArticles) => ({
+    targetBoArticles,
+  })
+);
 
 export function CommunityPage(props: any) {
   /** INITIALIZATIONS **/
+  const { setTargetBoArticles } = actionDispatch(useDispatch());
+  const { targetBoArticles } = useSelector(targetBoArticlesRetriever);
+
   const [value, setValue] = React.useState("1");
+  const [searchArticlesObj, setSearchArticlesObj] = useState<SearchArticleObj>({
+    bo_id: "all",
+    page: 1,
+    limit: 5,
+  });
+  const [articlesRebuild, setArticlesRebuild] = useState<Date>(new Date());
+
+  useEffect(() => {
+    const communityService = new CommunityApiService();
+    communityService
+      .getTargetArticles(searchArticlesObj)
+      .then((data) => setTargetBoArticles(data))
+      .catch((err) => console.log(err));
+  }, [searchArticlesObj, articlesRebuild]);
 
   /** HANDLERS **/
   const handleChange = (event: any, newValue: string) => {
+    searchArticlesObj.page = 1;
+    switch (newValue) {
+      case "1":
+        searchArticlesObj.bo_id = "all";
+        break;
+      case "2":
+        searchArticlesObj.bo_id = "celebrity";
+        break;
+      case "3":
+        searchArticlesObj.bo_id = "evaluation";
+        break;
+      case "4":
+        searchArticlesObj.bo_id = "story";
+        break;
+    }
+    setSearchArticlesObj({ ...searchArticlesObj });
     setValue(newValue);
   };
 
-  const handlePaginationChange = (event: any, newValue: number) => {
-    console.log(value);
+  const handlePaginationChange = (event: any, value: number) => {
+    searchArticlesObj.page = value;
+    setSearchArticlesObj({ ...searchArticlesObj });
   };
 
   return (
@@ -62,21 +117,29 @@ export function CommunityPage(props: any) {
                 <Box className={"article_main"}>
                   <TabPanel value={"1"}>
                     <TargetArticles
-                      targetBoArticles={[1, 2, 3, 4]}
+                      targetBoArticles={targetBoArticles}
+                      setArticlesRebuild={setArticlesRebuild}
                       test={"Maqolalar"}
                     />
                   </TabPanel>
                   <TabPanel value={"2"}>
                     <TargetArticles
-                      targetBoArticles={[1, 2]}
+                      targetBoArticles={targetBoArticles}
+                      setArticlesRebuild={setArticlesRebuild}
                       test={"Mashxurlar"}
                     />
                   </TabPanel>
                   <TabPanel value={"3"}>
-                    <TargetArticles targetBoArticles={[1, 2, 3]} />
+                    <TargetArticles
+                      targetBoArticles={targetBoArticles}
+                      setArticlesRebuild={setArticlesRebuild}
+                    />
                   </TabPanel>
                   <TabPanel value={"4"}>
-                    <TargetArticles targetBoArticles={[1, 2, 3, 4]} />
+                    <TargetArticles
+                      targetBoArticles={targetBoArticles}
+                      setArticlesRebuild={setArticlesRebuild}
+                    />
                   </TabPanel>
                 </Box>
 

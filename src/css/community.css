@@ -231,7 +231,7 @@
   height: 155px;
   display: flex;
   border-radius: 30px 0px 0px 30px;
-  background: url("/public/restaurant/burak.jpeg");
+  /* background: url("/public/restaurant/burak.jpeg"); */
   background-size: cover;
   position: relative;
   margin-right: 40px;

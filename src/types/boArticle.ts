@@ -14,5 +14,12 @@ export interface BoArticle {
   createdAt: Date;
   updateAt: Date;
   member_data: Member;
-  mb_liked: MeLiked[];
+  me_liked: MeLiked[];
+}
+
+export interface SearchArticleObj {
+  page: number;
+  limit: number;
+  bo_id: string;
+  order?: number | null;
 }
