@@ -83,7 +83,7 @@ export function VisitOtherPage(props: any) {
   );
   const { chosenSingleBoArticle } = useSelector(chosenSingleBoArticleRetriever);
   /** HANDLERS **/
-  const handlerChange = (event: React.SyntheticEvent, newValue: string) => {
+  const handleChange = (event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue);
   };
   return (

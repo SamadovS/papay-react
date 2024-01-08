@@ -73,15 +73,36 @@ class MemberApiService {
       const result = await axios.post(this.path + url, data, {
         withCredentials: true,
       });
+      console.log("likeresult>>>", result);
 
       assert.ok(result?.data, Definer.general_err1);
       assert.ok(result?.data.state != "fail", result?.data?.message);
-      console.log("state:", result.data.state);
+      console.log("state:", result.data.data);
 
       const like_result: MemberLiken = result.data.data;
       return like_result;
     } catch (err: any) {
       console.log(`ERROR ::: memberLikeTarget ${err.message}`);
+      throw err;
+    }
+  }
+
+  async getChosenMember(id: string) {
+    try {
+      let url = `/member/${id}`;
+
+      const result = await axios.get(this.path + url, {
+        withCredentials: true,
+      });
+
+      assert.ok(result?.data, Definer.general_err1);
+      assert.ok(result?.data?.state !== "fail", result?.data?.message);
+      console.log("state:::", result.data.state);
+
+      const member: Member = result.data.data;
+      return member;
+    } catch (err: any) {
+      console.log(`ERROR ::: getChosenMember ${err.message}`);
       throw err;
     }
   }
