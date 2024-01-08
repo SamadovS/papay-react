@@ -22,13 +22,15 @@ import { MemberFollowers } from "./memberFollowers";
 import { MemberFollowing } from "./memberFollowing";
 import { MySettings } from "./mySettings";
 import { TuiEditor } from "./tuiEditor";
-import { TViewer } from "./tViewer";
+import TViewer from "./tViewer";
 import { Member } from "../../../types/user";
 import { BoArticle, SearchMemberArticlesObj } from "../../../types/boArticle";
 import {
   sweetErrorHandling,
   sweetFailureProvider,
 } from "../../../lib/sweetAlert";
+import CommunityApiService from "../../apiServices/communityApiService";
+import MemberApiService from "../../apiServices/memberApiService";
 
 // REDUX
 import { useDispatch, useSelector } from "react-redux";
@@ -44,8 +46,6 @@ import {
   setChosenMemberBoArticles,
   setChosenSingleBoArticle,
 } from "./slice";
-import CommunityApiService from "../../apiServices/communityApiService";
-import MemberApiService from "../../apiServices/memberApiService";
 
 // REDUX SLICE
 const actionDispatch = (dispatch: Dispatch) => ({
@@ -55,6 +55,7 @@ const actionDispatch = (dispatch: Dispatch) => ({
   setChosenSingleBoArticle: (data: BoArticle) =>
     dispatch(setChosenSingleBoArticle(data)),
 });
+
 // REDUX SELECTOR
 const chosenMemberRetriever = createSelector(
   retrieveChosenMember,
@@ -93,13 +94,12 @@ export function VisitMyPage(props: any) {
   const [value, setValue] = useState("1");
   const [articlesRebuild, setArticlesRebuild] = useState<Date>(new Date());
   // const [followRebuild, setFollowRebuild] = useState<boolean>(false);
-  // const [memberArticleSearchObj, setMemberArticleSearchObj] =
 
   const [memberArticleSearchObj, setMemberArticleSearchObj] =
     useState<SearchMemberArticlesObj>({
       mb_id: "none",
       page: 1,
-      limit: 5,
+      limit: 3, // 5
     });
 
   useEffect(() => {
@@ -139,7 +139,10 @@ export function VisitMyPage(props: any) {
       const communityService = new CommunityApiService();
       communityService
         .getChosenArticle(art_id)
-        .then((data) => setChosenSingleBoArticle(data))
+        .then((data) => {
+          setChosenSingleBoArticle(data);
+          setValue("6");
+        })
         .catch((err) => console.log(err));
     } catch (err: any) {
       console.log(err);
@@ -171,8 +174,8 @@ export function VisitMyPage(props: any) {
                     >
                       <Box className="bottom_box">
                         <Pagination
-                          count={3}
-                          page={1}
+                          count={memberArticleSearchObj.limit}
+                          page={memberArticleSearchObj.page}
                           renderItem={(item) => (
                             <PaginationItem
                               components={{
@@ -216,7 +219,7 @@ export function VisitMyPage(props: any) {
                 <TabPanel value="6">
                   <Box className="menu_name">Tanlangan Maqolalar</Box>
                   <Box className="menu_content">
-                    <TViewer text="<h2>It's tViewer page</h2>" />
+                    <TViewer chosenSingleBoArticle={chosenSingleBoArticle} />
                   </Box>
                 </TabPanel>
               </Box>

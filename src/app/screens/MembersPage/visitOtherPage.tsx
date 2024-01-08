@@ -21,7 +21,7 @@ import { TabContext, TabPanel } from "@mui/lab";
 import { MemberPosts } from "./memberPosts";
 import { MemberFollowers } from "./memberFollowers";
 import { MemberFollowing } from "./memberFollowing";
-import { TViewer } from "./tViewer";
+import TViewer from "./tViewer";
 import { Member } from "../../../types/user";
 import { BoArticle } from "../../../types/boArticle";
 
