@@ -153,8 +153,8 @@ export function VisitOtherPage(props: any) {
                     className="user_corner_icon"
                   />
                 </Box>
-                <p className="user_name">Maria</p>
-                <p className="user_type">Foydalanuvchi</p>
+                <p className="user_name">{chosenMember?.mb_nick}</p>
+                <p className="user_type">{chosenMember?.mb_type}</p>
                 <Box className="social_wrap">
                   <Facebook className="social_icons" />
                   <Instagram className="social_icons" />

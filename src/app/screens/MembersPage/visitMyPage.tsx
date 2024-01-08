@@ -93,7 +93,7 @@ export function VisitMyPage(props: any) {
 
   const [value, setValue] = useState("1");
   const [articlesRebuild, setArticlesRebuild] = useState<Date>(new Date());
-  // const [followRebuild, setFollowRebuild] = useState<boolean>(false);
+  const [followRebuild, setFollowRebuild] = useState<boolean>(false);
 
   const [memberArticleSearchObj, setMemberArticleSearchObj] =
     useState<SearchMemberArticlesObj>({
@@ -121,7 +121,7 @@ export function VisitMyPage(props: any) {
       .getChosenMember(verifiedMemberData?._id)
       .then((data) => setChosenMember(data))
       .catch((err) => console.log(err));
-  }, [memberArticleSearchObj, articlesRebuild]);
+  }, [memberArticleSearchObj, articlesRebuild, followRebuild]);
 
   /** HANDLERS **/
   const handleChange = (event: any, newValue: string) => {
@@ -174,7 +174,11 @@ export function VisitMyPage(props: any) {
                     >
                       <Box className="bottom_box">
                         <Pagination
-                          count={memberArticleSearchObj.limit}
+                          count={
+                            memberArticleSearchObj.page >= 3
+                              ? memberArticleSearchObj.page + 1
+                              : 3
+                          }
                           page={memberArticleSearchObj.page}
                           renderItem={(item) => (
                             <PaginationItem
@@ -195,13 +199,23 @@ export function VisitMyPage(props: any) {
                 <TabPanel value="2">
                   <Box className="menu_name">Followers</Box>
                   <Box className="menu_content">
-                    <MemberFollowers actions_enabled={true} />
+                    <MemberFollowers
+                      actions_enabled={true}
+                      setFollowRebuild={setFollowRebuild}
+                      followRebuild={followRebuild}
+                      mb_id={props.verifiedMemberData?._id}
+                    />
                   </Box>
                 </TabPanel>
                 <TabPanel value="3">
                   <Box className="menu_name">Following</Box>
                   <Box className="write_content">
-                    <MemberFollowing actions_enabled={true} />
+                    <MemberFollowing
+                      actions_enabled={true}
+                      setFollowRebuild={setFollowRebuild}
+                      followRebuild={followRebuild}
+                      mb_id={props.verifiedMemberData?._id}
+                    />
                   </Box>
                 </TabPanel>
                 <TabPanel value="4">
@@ -233,13 +247,17 @@ export function VisitMyPage(props: any) {
                 </a>
                 <Box className="user_img_wrap">
                   <img
-                    src="/icons/avatar.svg"
-                    alt="user"
+                    // alt="user"
                     className="user_corner_icon"
+                    src={
+                      chosenMember?.mb_type === "RESTAURANT"
+                        ? "/icons/resto.png"
+                        : "/icons/avatar.svg"
+                    }
                   />
                 </Box>
-                <p className="user_name">Maria</p>
-                <p className="user_type">Foydalanuvchi</p>
+                <p className="user_name">{chosenMember?.mb_nick}</p>
+                <p className="user_type">{chosenMember?.mb_type}</p>
                 <Box className="social_wrap">
                   <Facebook className="social_icons" />
                   <Instagram className="social_icons" />
@@ -247,10 +265,14 @@ export function VisitMyPage(props: any) {
                   <Telegram className="social_icons" />
                 </Box>
                 <Box className="follow_status">
-                  <span style={{ marginRight: "20px" }}>Follower: 7</span>
-                  <span>Followings: 7</span>
+                  <span style={{ marginRight: "20px" }}>
+                    Followers: {chosenMember?.mb_subscriber_cnt}
+                  </span>
+                  <span>Followings: {chosenMember?.mb_follow_cnt}</span>
                 </Box>
-                <p className="user_desc">Salom mening ismim Maria</p>
+                <p className="user_desc">
+                  {chosenMember?.mb_description ?? "Salom, men yangi user man"}
+                </p>
                 <Button onClick={() => setValue("4")} variant="contained">
                   Maqola yozish
                 </Button>
