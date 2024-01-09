@@ -32,11 +32,7 @@ export function MembersPage(props: any) {
           />
         </Route>
         <Route path={`${member.path}`}>
-          <VisitMyPage
-            verifiedMemberData={verifiedMemberData}
-            chosen_mb_id={chosen_mb_id}
-            chosen_art_id={chosen_art_id}
-          />
+          <VisitMyPage verifiedMemberData={verifiedMemberData} />
         </Route>
       </Switch>
     </div>
