@@ -24,6 +24,7 @@ import { Dispatch } from "@reduxjs/toolkit";
 import { createSelector } from "reselect";
 import { retrieveMemberFollowings } from "./selector";
 import { setMemberFollowings } from "./slice";
+import { useHistory } from "react-router-dom";
 
 // REDUX SLICE
 const actionDispatch = (dispatch: Dispatch) => ({
@@ -41,6 +42,7 @@ const memberFollowingsRetriever = createSelector(
 
 export function MemberFollowing(props: any) {
   /**INSTALIZATIONS**/
+  const history = useHistory();
   const { mb_id, followRebuild, setFollowRebuild } = props;
   const { setMemberFollowings } = actionDispatch(useDispatch());
   const { memberFollowings } = useSelector(memberFollowingsRetriever);
@@ -77,6 +79,11 @@ export function MemberFollowing(props: any) {
     setFollowingsSearchObj({ ...followingsSearchObj });
   };
 
+  const visitMemberHandler = (mb_id: string) => {
+    history.push(`/member-page/other?mb_id=${mb_id}`);
+    document.location.reload();
+  };
+
   return (
     <Stack>
       {memberFollowings.map((following: Following) => {
@@ -88,14 +95,20 @@ export function MemberFollowing(props: any) {
             <Stack className="right_wrap_user">
               <Avatar
                 alt="avatar"
+                style={{ cursor: "pointer" }}
                 src={img_url}
                 sx={{ width: 89, height: 89, mr: "25px" }}
+                onClick={() => visitMemberHandler(following?.follow_id)}
               />
               <div className="name_wrap">
                 <span className="username_text">
                   {following?.follow_member_data?.mb_type}
                 </span>
-                <span className="name_text">
+                <span
+                  className="name_text"
+                  style={{ cursor: "pointer" }}
+                  onClick={() => visitMemberHandler(following?.follow_id)}
+                >
                   {following?.follow_member_data?.mb_nick}
                 </span>
               </div>
