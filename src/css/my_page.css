@@ -272,7 +272,7 @@
 }
 
 .my_page_right .menu_wrapper {
-  height: 170px;
+  height: 200px;
   width: 100%;
   margin-top: 40px;
   display: flex;
@@ -282,18 +282,23 @@
 }
 
 .my_page_right .menu_wrapper .tab_menu {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  width: 372.58px;
+  width: 300.58px;
   height: 50px;
-  flex-shrink: 0;
-  border-radius: 20px;
+  border-radius: 15px;
+  margin-top: 11px;
   background: #fff;
+
+  align-items: center;
+  position: relative;
+  justify-content: center;
+  display: inline-flex;
   box-shadow: 0px 4px 16px 0px rgba(242, 189, 87, 0.04) inset,
     0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset,
     0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;
+
+  flex-direction: row;
+  flex-shrink: 0;
+
   color: #000;
   font-family: "Poppins";
   font-size: 25px;

@@ -7,6 +7,7 @@ import {
   PaginationItem,
   Stack,
   Tab,
+  Tabs,
 } from "@mui/material";
 import {
   ArrowBack,
@@ -32,6 +33,9 @@ import {
   sweetErrorHandling,
   sweetTopSmallSuccessAlert,
 } from "../../../lib/sweetAlert";
+import assert from "assert";
+import { Definer } from "../../../lib/Definer";
+import FollowApiService from "../../apiServices/followApiService";
 
 // REDUX
 import { useDispatch, useSelector } from "react-redux";
@@ -47,9 +51,6 @@ import {
   setChosenMemberBoArticles,
   setChosenSingleBoArticle,
 } from "./slice";
-import assert from "assert";
-import { Definer } from "../../../lib/Definer";
-import FollowApiService from "../../apiServices/followApiService";
 
 // REDUX SLICE
 const actionDispatch = (dispatch: Dispatch) => ({
@@ -100,7 +101,7 @@ export function VisitOtherPage(props: any) {
     useState<SearchMemberArticlesObj>({
       mb_id: chosen_mb_id,
       page: 1,
-      limit: 3, // 5
+      limit: 4,
     });
   const [articlesRebuild, setArticlesRebuild] = useState<Date>(new Date());
   const [followRebuild, setFollowRebuild] = useState<boolean>(false);
@@ -340,18 +341,56 @@ export function VisitOtherPage(props: any) {
                   </TabList>
                 </Box>
               </Box>
-              <Box className="menu_wrapper">
-                <Box onClick={() => setValue("1")} className="tab_menu">
-                  <img src="/icons/Pencil.svg" alt="icon" /> Maqolalar
-                </Box>
-                <Box onClick={() => setValue("2")} className="tab_menu">
-                  <img src="/icons/Group.svg" alt="icon" />
-                  Follower
-                </Box>
-                <Box onClick={() => setValue("3")} className="tab_menu">
-                  <img src="/icons/User.svg" alt="icon" />
-                  Following
-                </Box>
+
+              <Box className={"menu_wrapper"}>
+                <Tabs
+                  orientation="vertical"
+                  variant="scrollable"
+                  value={value}
+                  onChange={handleChange}
+                  aria-label="Vertical tabs example"
+                  sx={{
+                    borderRight: 1,
+                    borderColor: "divider",
+                  }}
+                >
+                  <Tab
+                    style={{ flexDirection: "column" }}
+                    value={"1"}
+                    component={() => (
+                      <div
+                        className={`tab_menu  `}
+                        onClick={() => setValue("1")}
+                      >
+                        <img src={"/icons/Pencil.svg"} />
+                        <span>Maqolalarim</span>
+                      </div>
+                    )}
+                  />
+                  <Tab
+                    style={{ flexDirection: "column" }}
+                    value={"2"}
+                    component={() => (
+                      <div
+                        className={`tab_menu  `}
+                        onClick={() => setValue("2")}
+                      >
+                        <img src={"/icons/Group.svg"} />
+                        <span>Follower</span>
+                      </div>
+                    )}
+                  />
+                  <Tab
+                    style={{ flexDirection: "column" }}
+                    value={"3"}
+                    component={() => (
+                      <div className={`tab_menu`} onClick={() => setValue("3")}>
+                        <img src={"/icons/User.svg"} />
+                        <span>Following</span>
+                      </div>
+                    )}
+                  />
+                </Tabs>
               </Box>
             </Stack>
           </TabContext>
