@@ -5,6 +5,7 @@ import { Box, Button, Stack } from "@mui/material";
 import { Order } from "../../../types/order";
 import { Product } from "../../../types/product";
 import { serverApi } from "../../../lib/config";
+import { verifiedMemberData } from "../../apiServices/verify";
 
 // REDUX
 import { createSelector } from "reselect";
@@ -34,7 +35,7 @@ export default function ProcessOrders(props: any) {
     try {
       const order_id = e.target.value;
       const data = { order_id: order_id, order_status: "FINISHED" };
-      if (!localStorage.getItem("member_data")) {
+      if (!verifiedMemberData) {
         sweetFailureProvider("Please login first", true);
       }
       let confirmation = window.confirm(

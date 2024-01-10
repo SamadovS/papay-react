@@ -28,6 +28,7 @@ import {
 import { useHistory } from "react-router-dom";
 import RestaurantApiService from "../../apiServices/restaurantApiService";
 import { SearchObj } from "../../../types/others";
+import { verifiedMemberData } from "../../apiServices/verify";
 
 // REDUX
 import { useDispatch, useSelector } from "react-redux";
@@ -90,7 +91,7 @@ export function AllRestaurants() {
 
   const targetLikeHandler = async (e: any, id: string) => {
     try {
-      assert.ok(localStorage.getItem("member_data"), Definer.auth_err1);
+      assert.ok(verifiedMemberData, Definer.auth_err1);
 
       const memberService = new MemberApiService();
       const like_result: any = await memberService.memberLikeTarget({

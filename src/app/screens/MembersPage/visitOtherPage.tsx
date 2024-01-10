@@ -36,6 +36,7 @@ import {
 import assert from "assert";
 import { Definer } from "../../../lib/Definer";
 import FollowApiService from "../../apiServices/followApiService";
+import { verifiedMemberData } from "../../apiServices/verify";
 
 // REDUX
 import { useDispatch, useSelector } from "react-redux";
@@ -83,7 +84,7 @@ const chosenMemberBoArticleRetriever = createSelector(
 export function VisitOtherPage(props: any) {
   /** INITIALIZINGS **/
   const history = useHistory();
-  const { verifiedMemberData, chosen_mb_id, chosen_art_id } = props;
+  const { chosen_mb_id, chosen_art_id } = props;
 
   const {
     setChosenMember,
@@ -165,7 +166,7 @@ export function VisitOtherPage(props: any) {
 
   const subscribeHandler = async (e: any) => {
     try {
-      assert.ok(localStorage.getItem("member_data"), Definer.auth_err1);
+      assert.ok(verifiedMemberData, Definer.auth_err1);
 
       const followService = new FollowApiService();
       await followService.subscribe(e.target.value);
@@ -180,7 +181,7 @@ export function VisitOtherPage(props: any) {
 
   const unsubscribeHandler = async (e: any) => {
     try {
-      assert.ok(localStorage.getItem("member_data"), Definer.auth_err1);
+      assert.ok(verifiedMemberData, Definer.auth_err1);
 
       const followService = new FollowApiService();
       await followService.unsubscribe(e.target.value);

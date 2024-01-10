@@ -26,6 +26,7 @@ import {
   sweetErrorHandling,
   sweetTopSmallSuccessAlert,
 } from "../../../lib/sweetAlert";
+import { verifiedMemberData } from "../../apiServices/verify";
 
 // REDUX
 import { useDispatch, useSelector } from "react-redux";
@@ -145,7 +146,7 @@ export function OneRestaurant(props: any) {
   };
   const targetLikeHandler = async (e: any) => {
     try {
-      assert.ok(localStorage.getItem("member_data"), Definer.auth_err1);
+      assert.ok(verifiedMemberData, Definer.auth_err1);
       const memberService = new MemberApiService();
       const data = { like_ref_id: e.target.id, group_type: "product" };
       const like_result: any = await memberService.memberLikeTarget(data);
