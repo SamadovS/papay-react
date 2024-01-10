@@ -81,7 +81,7 @@ const chosenMemberBoArticleRetriever = createSelector(
 );
 
 export function VisitMyPage(props: any) {
-  /** INITIALIZINGS **/
+  /** INITIALIZATIONS **/
   const {
     setChosenMember,
     setChosenMemberBoArticles,
@@ -251,16 +251,22 @@ export function VisitMyPage(props: any) {
                 <a onClick={() => setValue("5")} className="settings_btn">
                   <Settings />
                 </a>
-                <Box className="user_img_wrap">
-                  <img
-                    // alt="user"
-                    className="user_corner_icon"
-                    src={
-                      chosenMember?.mb_type === "RESTAURANT"
-                        ? "/icons/resto.png"
-                        : "/icons/avatar.svg"
-                    }
-                  />
+                <Box className="order_box">
+                  <div>
+                    <img
+                      className="user_img_wrap"
+                      src={verifiedMemberData?.mb_image}
+                    />
+                    <div className="user_corner_icon">
+                      <img
+                        src={
+                          chosenMember?.mb_type === "RESTAURANT"
+                            ? "/icons/resto.png"
+                            : "/icons/avatar.svg"
+                        }
+                      />
+                    </div>
+                  </div>
                 </Box>
                 <p className="user_name">{chosenMember?.mb_nick}</p>
                 <p className="user_type">{chosenMember?.mb_type}</p>

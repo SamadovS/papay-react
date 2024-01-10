@@ -21,7 +21,6 @@ import assert from "assert";
 import AuthenticationModal from "./components/auth";
 import { serverApi } from "../lib/config";
 import MemberApiService from "./apiServices/memberApiService";
-import "../app/apiServices/verify";
 
 import { Definer } from "../lib/Definer";
 import {

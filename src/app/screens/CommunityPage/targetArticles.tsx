@@ -45,7 +45,10 @@ export function TargetArticles(props: any) {
           ? `${serverApi}/${article.art_image}`
           : "/community/cute_girl.jpg";
         return (
-          <Link className={"article_box"} href={``}>
+          <Link
+            className={"article_box"}
+            href={`/member-page/other?mb_id=${article.mb_id}&art_id=${article._id}`}
+          >
             {/* for article photo  */}
             <Box
               className={"all_art_img"}

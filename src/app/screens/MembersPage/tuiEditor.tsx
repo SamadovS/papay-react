@@ -24,7 +24,7 @@ import { Definer } from "../../../lib/Definer";
 import { useHistory } from "react-router-dom";
 
 export const TuiEditor = (props: any) => {
-  /** INITIALIZINGS **/
+  /** INITIALIZATIONS **/
   const history = useHistory();
   const editorRef = useRef();
   const [communityArticleData, setCommunityArticleData] =

@@ -45,7 +45,7 @@ export function CommunityPage(props: any) {
   const [searchArticlesObj, setSearchArticlesObj] = useState<SearchArticleObj>({
     bo_id: "all",
     page: 1,
-    limit: 5,
+    limit: 4,
   });
   const [articlesRebuild, setArticlesRebuild] = useState<Date>(new Date());
 

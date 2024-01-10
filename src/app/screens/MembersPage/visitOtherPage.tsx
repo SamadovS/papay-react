@@ -82,7 +82,7 @@ const chosenMemberBoArticleRetriever = createSelector(
 );
 
 export function VisitOtherPage(props: any) {
-  /** INITIALIZINGS **/
+  /** INITIALIZATIONS **/
   const history = useHistory();
   const { chosen_mb_id, chosen_art_id } = props;
 
