@@ -149,8 +149,12 @@ export function CommunityPage(props: any) {
                   className={"art_bottom"}
                 >
                   <Pagination
-                    count={3}
-                    page={1}
+                    count={
+                      searchArticlesObj.page >= 3
+                        ? searchArticlesObj.page + 1
+                        : 3
+                    }
+                    page={searchArticlesObj.page}
                     renderItem={(item) => (
                       <PaginationItem
                         components={{

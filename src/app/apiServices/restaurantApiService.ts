@@ -20,7 +20,7 @@ class RestaurantApiService {
       assert.ok(result?.data.state != "fail", result?.data?.message);
       console.log("state:", result.data.state);
 
-      console.log("result:::", result);
+      // console.log("result:::", result);
       const top_restaurants: Restaurant[] = result.data.data;
       return top_restaurants;
     } catch (err: any) {

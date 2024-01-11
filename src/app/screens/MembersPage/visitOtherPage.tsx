@@ -52,6 +52,7 @@ import {
   setChosenMemberBoArticles,
   setChosenSingleBoArticle,
 } from "./slice";
+import { serverApi } from "../../../lib/config";
 
 // REDUX SLICE
 const actionDispatch = (dispatch: Dispatch) => ({
@@ -193,6 +194,8 @@ export function VisitOtherPage(props: any) {
       sweetErrorHandling(err).then();
     }
   };
+  console.log(">>>>>>>>>>>>", chosenMember?.mb_image);
+  // const image_path = `${serverApi}/${chosenMember?.mb_image}`;
 
   return (
     <div className="my_page">
@@ -273,13 +276,24 @@ export function VisitOtherPage(props: any) {
 
             <Stack className="my_page_right">
               <Box className="order_info_box">
-                <Box className="user_img_wrap">
-                  <img
-                    src="/icons/avatar.svg"
-                    alt="user"
-                    className="user_corner_icon"
-                  />
+                <Box className="order_box">
+                  <div>
+                    <img
+                      className="user_img_wrap"
+                      src={`${chosenMember?.mb_image}`}
+                    />
+                    <div className="user_corner_icon">
+                      <img
+                        src={
+                          chosenMember?.mb_type === "RESTAURANT"
+                            ? "/icons/resto.png"
+                            : "/icons/avatar.svg"
+                        }
+                      />
+                    </div>
+                  </div>
                 </Box>
+
                 <p className="user_name">{chosenMember?.mb_nick}</p>
                 <p className="user_type">{chosenMember?.mb_type}</p>
                 <Box className="social_wrap">
