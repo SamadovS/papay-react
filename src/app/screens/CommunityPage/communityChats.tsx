@@ -122,14 +122,14 @@ export function CommunityChats() {
       textInput.current.value = "";
       assert.ok(message, Definer.input_err3);
 
-      const mb_image_url =
+      const mb_img_url =
         verifiedMemberData?.mb_image ?? "/auth/default_user.svg";
 
       socket.emit("createMsg", {
         msg: message,
         mb_id: verifiedMemberData?._id,
         mb_nick: verifiedMemberData?.mb_nick,
-        mb_image: mb_image_url,
+        mb_image: mb_img_url,
       });
       setMessage("");
 

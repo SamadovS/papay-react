@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Modal from "@material-ui/core/Modal";
 import Backdrop from "@material-ui/core/Backdrop";
@@ -35,22 +35,43 @@ const ModalImg = styled.img`
 `;
 
 export default function AuthenticationModal(props: any) {
-  // INITIALIZATIONS
+  /** INITIALIZATIONS **/
   const classes = useStyles();
 
-  let mb_nick: string = "",
-    mb_password: string = "",
-    mb_phone: string = "";
+  const [mb_nick, set_mb_nick] = useState<string>("");
+  const [mb_phone, set_mb_phone] = useState<number>(0);
+  const [mb_password, set_mb_password] = useState<string>("");
 
-  // HANDLERS
+  /** HANDLERS**/
   const handleUserName = (e: any) => {
-    mb_nick = e.target.value;
+    set_mb_nick(e.target.value);
   };
   const handlePhone = (e: any) => {
-    mb_phone = e.target.value;
+    set_mb_phone(e.target.value);
   };
   const handlePassword = (e: any) => {
-    mb_password = e.target.value;
+    set_mb_password(e.target.value);
+  };
+
+  const handleSignUpRequest = async () => {
+    try {
+      const is_fulfilled =
+        mb_nick !== "" && mb_password !== "" && mb_phone !== 0;
+      assert.ok(is_fulfilled, Definer.input_err1);
+      const signup_data = {
+        mb_nick,
+        mb_phone,
+        mb_password,
+      };
+      const mbApiService = new MemberApiService();
+      await mbApiService.signupRequest(signup_data);
+      props.handleSignUpClose();
+      window.location.reload();
+    } catch (err) {
+      console.log(err);
+      props.handleSignUpClose();
+      sweetErrorHandling(err).then();
+    }
   };
 
   const handleLogInRequest = async () => {
@@ -72,24 +93,15 @@ export default function AuthenticationModal(props: any) {
     }
   };
 
-  const handleSignUpRequest = async () => {
+  const passwordKeyDownHandler = (e: any) => {
     try {
-      const is_fulfilled =
-        mb_nick !== "" && mb_password !== "" && mb_phone !== "";
-      assert.ok(is_fulfilled, Definer.input_err1);
-      const signup_data = {
-        mb_nick,
-        mb_phone,
-        mb_password,
-      };
-      const mbApiService = new MemberApiService();
-      await mbApiService.signupRequest(signup_data);
-      props.handleSignUpClose();
-      window.location.reload();
+      if (e.key == "Enter" && props.signUpOpen) {
+        handleSignUpRequest().then();
+      } else if (e.key == "Enter" && props.logInOpen) {
+        handleLogInRequest().then();
+      }
     } catch (err) {
       console.log(err);
-      props.handleSignUpClose();
-      sweetErrorHandling(err).then();
     }
   };
 
@@ -134,6 +146,7 @@ export default function AuthenticationModal(props: any) {
                 label="password"
                 variant="outlined"
                 onChange={handlePassword}
+                onKeyDown={passwordKeyDownHandler}
               />
               <Fab
                 sx={{ marginTop: "30px", width: "120px" }}
@@ -187,6 +200,7 @@ export default function AuthenticationModal(props: any) {
                 label="password"
                 variant="outlined"
                 onChange={handlePassword}
+                onKeyDown={passwordKeyDownHandler}
               />
               <Fab
                 sx={{ marginTop: "25px", width: "120px" }}

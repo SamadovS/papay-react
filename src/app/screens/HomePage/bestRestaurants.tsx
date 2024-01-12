@@ -34,7 +34,7 @@ const bestRestaurantRetriever = createSelector(
 );
 
 export function BestRestaurants() {
-  // INITIALIZATIONS
+  /** INITIALIZATIONS **/
   const { bestRestaurants } = useSelector(bestRestaurantRetriever);
   const refs: any = useRef([]);
   const history = useHistory();
